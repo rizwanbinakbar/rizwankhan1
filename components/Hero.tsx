@@ -92,7 +92,7 @@ export function Hero() {
                   </div>
                 ) : (
                   <img
-                    src="/profile.jpg"
+                    src="/Rizwan.PFP.png"
                     alt="Rizwan Khan"
                     className="w-full h-full object-cover"
                     onError={() => setImgError(true)}
