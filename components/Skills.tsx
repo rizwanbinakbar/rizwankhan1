@@ -2,7 +2,6 @@ import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 
 const skillCategories = [
-const skills = [
   {
     title: "Data Analytics",
     skills: [
