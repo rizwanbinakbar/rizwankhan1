@@ -38,11 +38,11 @@ export function Hero() {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button size="lg" asChild>
-                <a href="/resume.pdf" download>
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Resume
-                </a>
-              </Button>
+  <a href="/Rizwan_Resume_DA.pdf" target="_blank" rel="noopener noreferrer">
+    <Download className="mr-2 h-4 w-4" />
+    View Resume
+  </a>
+</Button>
               <Button variant="outline" size="lg" asChild>
                 <a href="#projects">View My Work</a>
               </Button>
