@@ -7,7 +7,11 @@ export function Hero() {
     <section className="min-h-screen flex items-center justify-center px-4 pt-16">
       <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
         <div className="mb-6">
-          <Badge variant="secondary" className="mb-4 text-sm px-4 py-1">
+          <Badge variant="secondary" className="mb-4 text-sm px-4 py-1 inline-flex items-center gap-2">
+            <span aria-hidden="true" className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            </span>
             Available for new opportunities
           </Badge>
         </div>
