@@ -21,9 +21,8 @@ export function Hero() {
         </p>
 
         <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          I build scalable web applications and cloud-native solutions with a
-          passion for clean code, great user experiences, and continuous
-          delivery.
+          I build end-to-end Data Analytics solutions and 
+          Power BI Dashbaords to help in tracking KPIs and making key business decisions.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
