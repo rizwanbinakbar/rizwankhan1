@@ -52,8 +52,8 @@ export function Skills() {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl font-bold mb-4">Skills &amp; Technologies</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A curated set of tools and technologies I use to bring ideas to
-            life.
+            A curated set of tools and technologies I use to help in
+            key decision making.
           </p>
         </div>
 
