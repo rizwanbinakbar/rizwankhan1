@@ -2,21 +2,46 @@ import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 
 const skillCategories = [
+const skills = [
   {
-    title: "Frontend",
-    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Redux"],
+    title: "Data Analytics",
+    skills: [
+      "Python",
+      "SQL",
+      "Power BI",
+      "Excel",
+      "Data Visualization",
+      "A/B Testing"
+    ],
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "Python", "Django", "FastAPI", "GraphQL"],
+    title: "Data Engineering",
+    skills: [
+      "PySpark",
+      "Apache Spark",
+      "ETL / ELT Pipelines",
+      "Data Warehousing",
+      "Medallion Architecture",
+      "Data Pipeline Orchestration"
+    ],
   },
   {
-    title: "DevOps & Cloud",
-    skills: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
+    title: "Cloud & DevOps",
+    skills: [
+      "AWS",
+      "Docker",
+      "Git",
+    ],
   },
   {
     title: "Databases",
-    skills: ["PostgreSQL", "MongoDB", "Redis", "Elasticsearch"],
+    skills: [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Snowflake",
+      "BigQuery"
+    ],
   },
 ];
 
