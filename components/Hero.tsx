@@ -1,78 +1,134 @@
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import { Github, Linkedin, Mail, Download } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ArrowDown, User } from "lucide-react";
 
 export function Hero() {
+  const [imgError, setImgError] = useState(false);
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 pt-16">
-      <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
-        <div className="mb-6">
-          <Badge variant="secondary" className="mb-4 text-sm px-4 py-1 inline-flex items-center gap-2">
-            <span aria-hidden="true" className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-            </span>
-            Available for new opportunities
-          </Badge>
+    <section className="min-h-screen flex flex-col justify-center px-4 pt-16">
+      <div className="max-w-6xl mx-auto w-full">
+        {/* Two-column hero layout */}
+        <div className="flex flex-col md:flex-row items-center gap-12 py-16">
+
+          {/* Left column – text content */}
+          <div className="flex-1 animate-fade-in-up">
+            <Badge variant="secondary" className="mb-6 text-sm px-4 py-1.5 inline-flex items-center gap-2">
+              <span aria-hidden="true" className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+              </span>
+              Available for Work
+            </Badge>
+
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+              Hello, I'm<br />
+              <span className="text-primary">Rizwan Khan</span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-muted-foreground mb-3 font-medium">
+              Data Analyst · Power BI Developer · ETL & Cloud Infrastructure
+            </p>
+
+            <p className="text-sm md:text-base text-muted-foreground mb-8 leading-relaxed max-w-xl">
+              I build end-to-end Data Analytics solutions and Power BI Dashboards
+              to help track KPIs and drive key business decisions.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <Button size="lg" asChild>
+                <a href="/resume.pdf" download>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Resume
+                </a>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <a href="#projects">View My Work</a>
+              </Button>
+            </div>
+
+            <div className="flex gap-3">
+              <a
+                href="https://github.com/rizwanbinakbar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border p-3 text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="https://linkedin.com/in/rizwanbinakbar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border p-3 text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:rizwanfordata@gmail.com"
+                className="rounded-full border p-3 text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right column – profile image */}
+          <div className="flex-shrink-0 relative animate-scale-in">
+            <div className="relative w-64 h-64 md:w-80 md:h-80">
+              {/* Circular profile photo */}
+              <div className="w-full h-full rounded-full overflow-hidden border-4 border-border bg-muted flex items-center justify-center">
+                {imgError ? (
+                  <div className="flex flex-col items-center justify-center text-center text-muted-foreground p-6 gap-3">
+                    <User className="h-16 w-16 opacity-40" />
+                    <p className="text-xs leading-relaxed opacity-70">
+                      Place your photo at<br />
+                      <code className="font-mono font-semibold">public/profile.jpg</code>
+                    </p>
+                  </div>
+                ) : (
+                  <img
+                    src="/profile.jpg"
+                    alt="Rizwan Khan"
+                    className="w-full h-full object-cover"
+                    onError={() => setImgError(true)}
+                  />
+                )}
+              </div>
+
+              {/* Available for hire badge */}
+              <div className="absolute bottom-3 -right-2 md:right-0 bg-background border rounded-full px-3 py-1.5 flex items-center gap-2 shadow-lg whitespace-nowrap">
+                <span className="w-2.5 h-2.5 rounded-full bg-green-500 inline-block flex-shrink-0"></span>
+                <span className="text-sm font-medium">Available for hire</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          Hi, I'm <span className="text-primary">Rizwan Khan</span>
-        </h1>
-
-        <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
-          Data Analyst · Power BI Developer · ETL & Cloud Infrastructure
-        </p>
-
-        <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          I build end-to-end Data Analytics solutions and 
-          Power BI Dashbaords to help in tracking KPIs and making key business decisions.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Button size="lg" asChild>
-            <a href="#contact">
-              <Mail className="mr-2 h-4 w-4" />
-              Get in Touch
-            </a>
-          </Button>
-          <Button variant="outline" size="lg" asChild>
-            <a href="#projects">View Projects</a>
-          </Button>
-          <Button variant="ghost" size="lg" asChild>
-            <a href="/resume.pdf" download>
-              <Download className="mr-2 h-4 w-4" />
-              Resume
-            </a>
-          </Button>
+        {/* Stats row */}
+        <div className="grid grid-cols-3 gap-4 py-8 border-t">
+          <div>
+            <p className="text-3xl md:text-4xl font-bold">20+</p>
+            <p className="text-muted-foreground text-sm mt-1">Projects</p>
+          </div>
+          <div>
+            <p className="text-3xl md:text-4xl font-bold">3+</p>
+            <p className="text-muted-foreground text-sm mt-1">Years Exp</p>
+          </div>
+          <div>
+            <p className="text-3xl md:text-4xl font-bold">100%</p>
+            <p className="text-muted-foreground text-sm mt-1">Client Satisfaction</p>
+          </div>
         </div>
 
-        <div className="flex justify-center gap-6">
-          <a
-            href="https://github.com/rizwanbinakbar"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="GitHub"
-          >
-            <Github className="h-6 w-6" />
-          </a>
-          <a
-            href="https://linkedin.com/rizwanbinakbar"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="h-6 w-6" />
-          </a>
-          <a
-            href="mailto:rizwanfordata@gmail.com"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Email"
-          >
-            <Mail className="h-6 w-6" />
-          </a>
+        {/* Scroll indicator */}
+        <div className="flex flex-col items-center py-4 text-muted-foreground">
+          <span className="text-sm mb-2">Scroll to explore</span>
+          <ArrowDown className="h-4 w-4 animate-bounce" />
         </div>
       </div>
     </section>
