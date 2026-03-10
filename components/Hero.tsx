@@ -49,7 +49,7 @@ export function Hero() {
 
         <div className="flex justify-center gap-6">
           <a
-            href="https://github.com"
+            href="https://github.com/rizwanbinakbar"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
@@ -58,7 +58,7 @@ export function Hero() {
             <Github className="h-6 w-6" />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://linkedin.com/rizwanbinakbar"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"
@@ -67,7 +67,7 @@ export function Hero() {
             <Linkedin className="h-6 w-6" />
           </a>
           <a
-            href="mailto:rizwan@example.com"
+            href="mailto:rizwanfordata@gmail.com"
             className="text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Email"
           >
