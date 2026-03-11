@@ -2,32 +2,23 @@ import { Badge } from "./ui/badge";
 
 const experiences = [
   {
-    role: "Senior Software Engineer",
-    company: "TechCorp Inc.",
-    period: "2022 – Present",
-    location: "Remote",
+    role: "Data Analyst",
+    company: "HashTurn",
+    period: "2024 – Present",
+    location: "Pakistan",
     description:
-      "Led the architecture and development of a microservices platform serving 2M+ daily users. Reduced deployment time by 60% through CI/CD automation.",
-    tags: ["React", "Node.js", "AWS", "Kubernetes"],
+      "Built end-to-end ETL pipelines, designed Medallion Architecture data models, and developed Power BI dashboards, improving data reliability, freshness, and reporting efficiency by 30–35%, while presenting insights to international stakeholders to accelerate decisions by 20%.",
+    tags: ["SQL", "Power BI", "Python", "AWS", "PySpark"],
   },
   {
-    role: "Full-Stack Developer",
+    role: "Freelance Power BI Developer",
     company: "Startup Labs",
     period: "2020 – 2022",
     location: "New York, NY",
     description:
-      "Built and shipped multiple SaaS products from 0 to 1. Designed REST and GraphQL APIs consumed by web and mobile clients.",
+      "Delivered insight-driven presentations to international clients, accelerating decision-making and improving stakeholder clarity by 20% (based on PM feedback).",
     tags: ["TypeScript", "Next.js", "PostgreSQL", "GraphQL"],
-  },
-  {
-    role: "Software Engineer",
-    company: "Digital Agency Co.",
-    period: "2018 – 2020",
-    location: "San Francisco, CA",
-    description:
-      "Developed responsive web applications for enterprise clients. Collaborated closely with UX designers to deliver pixel-perfect interfaces.",
-    tags: ["React", "Python", "Django", "Docker"],
-  },
+  }
 ];
 
 export function Experience() {
@@ -37,7 +28,7 @@ export function Experience() {
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            My journey building software that matters.
+            My journey building solutions that matters.
           </p>
         </div>
 
