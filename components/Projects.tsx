@@ -14,54 +14,62 @@ const projects = [
   {
     title: "Athlete Performance Tracking Dashboard",
     description:
-      "Built a Power BI dashboard for a fitness coach tracking 45 athletes, calculating 1RM progress, mobility scores, and training phase comparisons. Automated monthly reporting, saved 8 hours/week, and contributed to a 20% increase in client retention.",
+      "Built a Power BI dashboard for a fitness coach tracking 45 athletes, calculating 1RM progress, mobility scores, and training phase comparisons. Automated monthly reporting, saving 8 hours/week and improving decision visibility.",
     tags: ["Power BI", "SharePoint", "Data Visualization", "Data Modeling", "ETL"],
-    github: "https://github.com/rizwanbinakbar/Athlete-Performance-Tracking-Dashboard",
-    live: "https://rizwanbinakbar.notion.site/r?p=31540e4cba6880b6a069ed93d0489cb1&pm=c",
-    image: null,
+    github:
+      "https://github.com/rizwanbinakbar/Athlete-Performance-Tracking-Dashboard",
+    live:
+      "https://rizwanbinakbar.notion.site/r?p=31540e4cba6880b6a069ed93d0489cb1&pm=c",
+    image: "/projects/athlete-dashboard.png",
     imageColor: "from-blue-900 to-blue-700",
   },
   {
     title: "SQL Data Warehouse",
     description:
-      "This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights.",
+      "Built a layered data warehouse using Medallion Architecture, transforming raw datasets into clean analytical tables and generating insights with optimized SQL queries.",
     tags: ["SQL", "ETL", "Medallion Architecture", "MySQL"],
     github: "https://github.com/rizwanbinakbar/Sql-Data-warehouse-Project",
-    live: "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881ed90f1e1b2dba3947c&pm=c",
-    image: null,
+    live:
+      "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881ed90f1e1b2dba3947c&pm=c",
+    image: "/projects/sql-warehouse.png",
     imageColor: "from-purple-900 to-purple-700",
   },
   {
-    title: "MarketPulse",
+    title: "HR Analytics Dashboard",
     description:
-      "Full-stack e-commerce analytics platform offering real-time sales dashboards, inventory tracking, and AI-powered demand forecasting.",
-    tags: ["Python", "FastAPI", "React", "Redis", "Recharts"],
-    github: "https://github.com",
-    live: "https://example.com",
-    image: null,
+      "Power BI dashboard analyzing employee performance, attrition trends, and workforce demographics to support HR decision-making and planning.",
+    tags: ["Python", "SQL", "Power BI", "ETL", "Power Query"],
+    github: "https://github.com/rizwanbinakbar/HR-Analytics-Dashboard",
+    live:
+      "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881828107f31847dcbceb&pm=c",
+    image: "/projects/hr-dashboard.png",
     imageColor: "from-emerald-900 to-emerald-700",
-  }
+  },
 ];
 
 export function Projects() {
   return (
     <section className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
+
+        {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A selection of projects I've built or contributed to.
+            A selection of real-world data analytics and engineering projects I've built.
           </p>
         </div>
 
+        {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-animation">
           {projects.map((project) => (
             <Card
               key={project.title}
               className="flex flex-col border bg-card hover:shadow-md transition-shadow overflow-hidden p-0"
             >
-              {/* Project image header */}
-              <div className="w-full h-48 overflow-hidden flex-shrink-0">
+
+              {/* Project Image */}
+              <div className="w-full h-56 overflow-hidden flex-shrink-0">
                 {project.image ? (
                   <img
                     src={project.image}
@@ -69,18 +77,23 @@ export function Projects() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className={`w-full h-full bg-gradient-to-br ${project.imageColor} flex items-center justify-center`}>
+                  <div
+                    className={`w-full h-full bg-gradient-to-br ${project.imageColor} flex items-center justify-center`}
+                  >
                     <LayoutDashboard className="h-16 w-16 text-white/30" />
                   </div>
                 )}
               </div>
 
+              {/* Card Header */}
               <CardHeader className="pt-5">
                 <CardTitle>{project.title}</CardTitle>
                 <CardDescription className="leading-relaxed">
                   {project.description}
                 </CardDescription>
               </CardHeader>
+
+              {/* Tags */}
               <CardContent className="flex-1">
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
@@ -90,6 +103,8 @@ export function Projects() {
                   ))}
                 </div>
               </CardContent>
+
+              {/* Footer Buttons */}
               <CardFooter className="gap-3">
                 <Button variant="outline" size="sm" asChild>
                   <a
@@ -101,6 +116,7 @@ export function Projects() {
                     Code
                   </a>
                 </Button>
+
                 {project.live && (
                   <Button size="sm" asChild>
                     <a
@@ -114,9 +130,11 @@ export function Projects() {
                   </Button>
                 )}
               </CardFooter>
+
             </Card>
           ))}
         </div>
+
       </div>
     </section>
   );
