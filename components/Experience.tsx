@@ -12,12 +12,12 @@ const experiences = [
   },
   {
     role: "Freelance Power BI Developer",
-    company: "Startup Labs",
-    period: "2020 – 2022",
-    location: "New York, NY",
+    company: "Self-Employed",
+    period: "2024 – Present",
+    location: "Remote",
     description:
       "Delivered insight-driven presentations to international clients, accelerating decision-making and improving stakeholder clarity by 20% (based on PM feedback).",
-    tags: ["TypeScript", "Next.js", "PostgreSQL", "GraphQL"],
+    tags: ["Power BI", "SQL", "Python", "Azure", "PySpark"],
   }
 ];
 
