@@ -12,12 +12,12 @@ import { Github, ExternalLink, LayoutDashboard } from "lucide-react";
 
 const projects = [
   {
-    title: "CloudDash",
+    title: "Athlete Performance Tracking Dashboard",
     description:
-      "A real-time cloud infrastructure monitoring dashboard with alerts, metrics, and multi-cloud support for AWS, GCP, and Azure.",
-    tags: ["React", "Node.js", "WebSockets", "AWS", "Terraform"],
-    github: "https://github.com",
-    live: "https://example.com",
+      "Built a Power BI dashboard for a fitness coach tracking 45 athletes, calculating 1RM progress, mobility scores, and training phase comparisons. Automated monthly reporting, saved 8 hours/week, and contributed to a 20% increase in client retention.",
+    tags: ["Power BI", "SharePoint", "Data Visualization", "Data Modeling", "ETL"],
+    github: "https://github.com/rizwanbinakbar/Athlete-Performance-Tracking-Dashboard",
+    live: "https://rizwanbinakbar.notion.site/r?p=31540e4cba6880b6a069ed93d0489cb1&pm=c",
     image: null,
     imageColor: "from-blue-900 to-blue-700",
   },
