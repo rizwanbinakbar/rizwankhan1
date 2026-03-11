@@ -112,11 +112,11 @@ export function Hero() {
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-4 py-8 border-t">
           <div>
-            <p className="text-3xl md:text-4xl font-bold">20+</p>
+            <p className="text-3xl md:text-4xl font-bold">6+</p>
             <p className="text-muted-foreground text-sm mt-1">Projects</p>
           </div>
           <div>
-            <p className="text-3xl md:text-4xl font-bold">3+</p>
+            <p className="text-3xl md:text-4xl font-bold">2+</p>
             <p className="text-muted-foreground text-sm mt-1">Years Exp</p>
           </div>
           <div>
