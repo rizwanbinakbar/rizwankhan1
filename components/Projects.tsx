@@ -22,12 +22,12 @@ const projects = [
     imageColor: "from-blue-900 to-blue-700",
   },
   {
-    title: "DevFlow",
+    title: "SQL Data Warehouse",
     description:
       "This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights.",
-    tags: ["TypeScript", "Next.js", "PostgreSQL", "Docker"],
-    github: "https://github.com",
-    live: "https://example.com",
+    tags: ["SQL", "ETL", "Medallion Architecture", "MySQL"],
+    github: "https://github.com/rizwanbinakbar/Sql-Data-warehouse-Project",
+    live: "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881ed90f1e1b2dba3947c&pm=c",
     image: null,
     imageColor: "from-purple-900 to-purple-700",
   },
@@ -40,17 +40,7 @@ const projects = [
     live: "https://example.com",
     image: null,
     imageColor: "from-emerald-900 to-emerald-700",
-  },
-  {
-    title: "ChatKit",
-    description:
-      "Embeddable live-chat widget with a customisable UI, WebSocket-based messaging, and a self-hosted backend option.",
-    tags: ["React", "Node.js", "Socket.IO", "MongoDB"],
-    github: "https://github.com",
-    live: null,
-    image: null,
-    imageColor: "from-orange-900 to-orange-700",
-  },
+  }
 ];
 
 export function Projects() {
