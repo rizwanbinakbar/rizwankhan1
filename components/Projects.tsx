@@ -20,7 +20,7 @@ const projects = [
       "https://github.com/rizwanbinakbar/Athlete-Performance-Tracking-Dashboard",
     live:
       "https://rizwanbinakbar.notion.site/r?p=31540e4cba6880b6a069ed93d0489cb1&pm=c",
-    image: "/public/FitnessDashboard1.png",
+    image: "/FitnessDashboard1.png",
     imageColor: "from-blue-900 to-blue-700",
   },
   {
@@ -31,7 +31,7 @@ const projects = [
     github: "https://github.com/rizwanbinakbar/Sql-Data-warehouse-Project",
     live:
       "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881ed90f1e1b2dba3947c&pm=c",
-    image: "/public/data_architecture.png",
+    image: "/data_architecture.png",
     imageColor: "from-purple-900 to-purple-700",
   },
   {
@@ -42,7 +42,7 @@ const projects = [
     github: "https://github.com/rizwanbinakbar/HR-Analytics-Dashboard",
     live:
       "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881828107f31847dcbceb&pm=c",
-    image: "public/Summary-Dashboard.png",
+    image: "/Summary-Dashboard.png",
     imageColor: "from-emerald-900 to-emerald-700",
   },
 ];
