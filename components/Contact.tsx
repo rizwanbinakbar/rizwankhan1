@@ -16,16 +16,15 @@ export function Contact() {
     e.preventDefault();
     if (!formRef.current) return;
 
-  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
-  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
-  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
-
-    if (!serviceId || !templateId || !publicKey) {
-  setError(
-    "Contact form is not configured yet (missing EmailJS env vars). Please email me directly."
-  );
-  return;
-}
+    const serviceId =
+      (import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined) ??
+      "service_93408m7";
+    const templateId =
+      (import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined) ??
+      "template_1gupdeb";
+    const publicKey =
+      (import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined) ??
+      "ZqPm3NJgT4e8m48a_";
 
     setSending(true);
     setError(null);
@@ -94,7 +93,7 @@ export function Contact() {
               <div>
                 <p className="font-medium">LinkedIn</p>
                 <a
-                  href="https://linkedin.com/rizwanbinakbar"
+                  href="https://linkedin.com/in/rizwanbinakbar"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
