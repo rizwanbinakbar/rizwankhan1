@@ -24,7 +24,7 @@ const projects = [
   {
     title: "DevFlow",
     description:
-      "An open-source CI/CD pipeline visualiser that integrates with GitHub Actions, GitLab CI, and Jenkins to give teams a unified view.",
+      "This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights.",
     tags: ["TypeScript", "Next.js", "PostgreSQL", "Docker"],
     github: "https://github.com",
     live: "https://example.com",
