@@ -8,7 +8,7 @@ export function Hero() {
 
   return (
     <section className="min-h-screen flex flex-col justify-center px-4 pt-16">
-      <div className="max-w-6xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full">
         {/* Two-column hero layout */}
         <div className="flex flex-col md:flex-row items-center gap-12 py-16">
 
@@ -78,8 +78,8 @@ export function Hero() {
           </div>
 
           {/* Right column – profile image */}
-          <div className="flex-shrink-0 relative animate-scale-in">
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
+          <div className="flex-shrink-0 relative animate-scale-in md:-ml-16">
+            <div className="relative w-80 h-80 md:w-[420px] md:h-[420px]">
               {/* Circular profile photo */}
               <div className="w-full h-full rounded-full overflow-hidden border-4 border-border bg-muted flex items-center justify-center">
                 {imgError ? (
