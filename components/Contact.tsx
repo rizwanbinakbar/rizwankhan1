@@ -16,14 +16,16 @@ export function Contact() {
     e.preventDefault();
     if (!formRef.current) return;
 
-    const serviceId = "service_93408m7";
-    const templateId = "template_1gupdeb";
-    const publicKey = "CJei2am8qHGBknYu8";
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
     if (!serviceId || !templateId || !publicKey) {
-      setError("Contact form is not configured yet. Please email me directly.");
-      return;
-    }
+  setError(
+    "Contact form is not configured yet (missing EmailJS env vars). Please email me directly."
+  );
+  return;
+}
 
     setSending(true);
     setError(null);
