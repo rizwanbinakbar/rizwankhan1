@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -6,13 +7,37 @@ import { Label } from "./ui/label";
 import { Mail, MapPin, Github, Linkedin } from "lucide-react";
 
 export function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: Integrate with an email service (e.g., Resend, EmailJS, or a serverless function)
-    // before going to production. For now this is a UI placeholder.
-    setSubmitted(true);
+    if (!formRef.current) return;
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setError("Contact form is not configured yet. Please email me directly.");
+      return;
+    }
+
+    setSending(true);
+    setError(null);
+    try {
+      await emailjs.sendForm(serviceId, templateId, formRef.current, {
+        publicKey,
+      });
+      setSubmitted(true);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setError("Something went wrong. Please try again or email me directly.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -90,16 +115,17 @@ export function Contact() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" placeholder="Your name" required />
+                    <Input id="name" name="from_name" placeholder="Your name" required />
                   </div>
                   <div className="space-y-1.5">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
+                      name="reply_to"
                       type="email"
                       placeholder="you@example.com"
                       required
@@ -108,19 +134,23 @@ export function Contact() {
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="What's this about?" required />
+                  <Input id="subject" name="subject" placeholder="What's this about?" required />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="message">Message</Label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Your message…"
                     rows={5}
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full">
-                  Send Message
+                {error && (
+                  <p className="text-sm text-destructive">{error}</p>
+                )}
+                <Button type="submit" className="w-full" disabled={sending}>
+                  {sending ? "Sending…" : "Send Message"}
                 </Button>
               </form>
             )}
