@@ -16,9 +16,9 @@ export function Contact() {
     e.preventDefault();
     if (!formRef.current) return;
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceId = "service_93408m7";
+    const templateId = "template_1gupdeb";
+    const publicKey = "CJei2am8qHGBknYu8";
 
     if (!serviceId || !templateId || !publicKey) {
       setError("Contact form is not configured yet. Please email me directly.");
