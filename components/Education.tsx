@@ -44,7 +44,7 @@ const certifications: Certification[] = [
   {
     name: "Data Engineering Certificate",
     date: "2027",
-    logo: "/DE-Foundation-Cert.png",
+    logo: "DE-Foundation-Cert.png",
     issuer: "IBM",
     credentialUrl:
       "https://coursera.org/verify/specialization/JNTWD3LU47K3",
