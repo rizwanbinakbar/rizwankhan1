@@ -14,24 +14,19 @@ import { Button } from "./ui/button";
 // ─── University Data ──────────────────────────────────────────────────────────
 
 const university = {
-  name: "COMSATS University Islamabad",
-  degree: "Bachelor of Science in Computer Science",
-  cgpa: "3.72/4.00",
-  period: "2020 – 2024",
+  name: "Emerson University Multan",
+  degree: "Bachelor of Science in Artificial Intelligence",
+  cgpa: "3.8/4.0",
+  period: "2024 – 2028",
   coursework: [
     "Data Structures & Algorithms",
-    "Database Systems",
-    "Machine Learning",
-    "Data Mining",
     "Statistics & Probability",
-    "Linear Algebra",
+    "Computer Organization & Assembly Language",
     "Software Engineering",
-    "Operating Systems",
   ],
   activities: [
-    "Programming Club",
-    "Data Science Society",
-    "ACM Student Chapter",
+    "AI-Club",
+    "EUM Book Club",
   ],
 };
 
@@ -47,10 +42,10 @@ interface Certification {
 
 const certifications: Certification[] = [
   {
-    name: "Microsoft Certified: Power BI Data Analyst Associate",
-    date: "Dec 2023",
-    logo: "/certifications/microsoft-pbi.png",
-    issuer: "Microsoft",
+    name: "Data Engineering Certificate",
+    date: "207",
+    logo: "/microsoft-pbi.png",
+    issuer: "Coursera",
     credentialUrl:
       "https://learn.microsoft.com/en-us/credentials/certifications/data-analyst-associate/",
   },
