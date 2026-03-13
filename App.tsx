@@ -6,6 +6,7 @@ import { Skills } from "./components/Skills";
 import { Experience } from "./components/Experience";
 import { Projects } from "./components/Projects";
 import { Contact } from "./components/Contact";
+import { Education } from "./components/Education";
 import { ThemeProvider } from "./components/theme-provider";
 import { ThemeToggle } from "./components/theme-toggle";
 
@@ -16,6 +17,7 @@ export default function App() {
     { label: "Home", href: "#home" },
     { label: "Skills", href: "#skills" },
     { label: "Experience", href: "#experience" },
+    { label: "Education", href: "#education" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" }
   ];
@@ -94,6 +96,9 @@ export default function App() {
           </div>
           <div id="experience">
             <Experience />
+          </div>
+          <div id="education">
+            <Education />
           </div>
           <div id="projects">
             <Projects />
