@@ -174,44 +174,32 @@ function CertificationModal({
           </div>
         </DialogHeader>
 
-        {cert.credentialUrl ? (
-          <div className="flex flex-col gap-3 mt-2">
-            <iframe
-              src={cert.credentialUrl}
-              title={cert.name}
-              className="w-full rounded border"
-              style={{ height: "420px" }}
-              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-            />
-            <div className="flex justify-end">
-              <Button size="sm" asChild>
-                <a
-                  href={cert.credentialUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ExternalLink className="mr-1.5 h-4 w-4" />
-                  Open Credential
-                </a>
-              </Button>
-            </div>
+        <div className="flex flex-col items-center gap-4 py-6">
+          <CertLogo
+            src={cert.logo}
+            alt={`${cert.issuer ?? cert.name} logo`}
+            size={96}
+          />
+          <div className="text-center">
+            <p className="font-semibold text-base">{cert.name}</p>
+            {cert.issuer && (
+              <p className="text-muted-foreground text-sm mt-1">{cert.issuer}</p>
+            )}
+            <p className="text-muted-foreground text-sm mt-0.5">{cert.date}</p>
           </div>
-        ) : (
-          <div className="flex flex-col items-center gap-4 py-6">
-            <CertLogo
-              src={cert.logo}
-              alt={`${cert.issuer ?? cert.name} logo`}
-              size={96}
-            />
-            <div className="text-center">
-              <p className="font-semibold text-base">{cert.name}</p>
-              {cert.issuer && (
-                <p className="text-muted-foreground text-sm mt-1">{cert.issuer}</p>
-              )}
-              <p className="text-muted-foreground text-sm mt-0.5">{cert.date}</p>
-            </div>
-          </div>
-        )}
+          {cert.credentialUrl && (
+            <Button size="sm" asChild>
+              <a
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="mr-1.5 h-4 w-4" />
+                View Credential
+              </a>
+            </Button>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );
