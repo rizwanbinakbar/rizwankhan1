@@ -43,26 +43,34 @@ interface Certification {
 const certifications: Certification[] = [
   {
     name: "Data Engineering Certificate",
-    date: "207",
-    logo: "/microsoft-pbi.png",
-    issuer: "Coursera",
+    date: "2027",
+    logo: "/DE-Foundation-Cert.png",
+    issuer: "IBM",
     credentialUrl:
-      "https://learn.microsoft.com/en-us/credentials/certifications/data-analyst-associate/",
+      "https://coursera.org/verify/specialization/JNTWD3LU47K3",
   },
   {
-    name: "Microsoft Certified: Azure Data Fundamentals",
-    date: "Sep 2023",
-    logo: "/certifications/microsoft-azure.png",
-    issuer: "Microsoft",
+    name: "Python for DE & AI",
+    date: "2027",
+    logo: "/Python-For-DE-and-AI.png",
+    issuer: "IBM",
+    credentialUrl:
+      "https://coursera.org/verify/U3RPULUZXVDT",
+  },
+  {
+    name: "LUMS (ilmx) AI Professional",
+    date: "2028",
+    logo: "/LUMS-(ilmx)-AI-4-professionals.png",
+    issuer: "LUMS (ilmx)",
+    credentialUrl: "https://aws.amazon.com/certification/certified-cloud-practitioner/",
+  },
+    {
+    name: "SQL Intermediate",
+    date: "2027",
+    logo: "/SQL-Inter-HackerRank.png",
+    issuer: "HacerRank",
     credentialUrl:
       "https://learn.microsoft.com/en-us/credentials/certifications/azure-data-fundamentals/",
-  },
-  {
-    name: "AWS Certified Cloud Practitioner",
-    date: "Mar 2024",
-    logo: "/certifications/aws-ccp.png",
-    issuer: "Amazon Web Services",
-    credentialUrl: "https://aws.amazon.com/certification/certified-cloud-practitioner/",
   },
 ];
 
