@@ -36,7 +36,7 @@ const projects: Project[] = [
   {
     title: "Athlete Performance Tracking Dashboard",
     description:
-      "Athlete Performance Tracking Dashboard - Used by a fitness coach managing 45 athletes to track and share athlete progress",
+      "Used by a fitness coach managing 45 athletes to track and share athlete progress",
     tags: ["Power BI", "SharePoint", "Data Visualization", "Data Modeling", "ETL"],
     github:
       "https://github.com/rizwanbinakbar/Athlete-Performance-Tracking-Dashboard",
