@@ -44,26 +44,22 @@ const projects: Project[] = [
       "https://rizwanbinakbar.notion.site/r?p=31540e4cba6880b6a069ed93d0489cb1&pm=c",
     image: "/FitnessDashboard1.png",
     imageColor: "from-blue-900 to-blue-700",
-    caseStudy: {
-      problem: [
-        "No formal reporting system",
-        "Athlete progress not visually tracked",
-        "Hard to show measurable improvement",
-        "Difficult to justify premium training packages",
-        "Manual reporting would take ~8 hours per week"
-      ],
-      solution: [
-        "Built a Power BI dashboard connected to SharePoint",
-        "Designed ETL pipeline to clean raw training logs",
-        "Created 17 DAX measures to calculate performance trends and training comparisons.",
-        "Added interactive filters for athlete and training phase"
-      ],
-      outcome: [
-        "Eliminated manual reporting (~8 hours saved per week)",
-        "Increased client retention by an estimated 20% in the first month.",
-        "Improved communication with athlete-facing reports",
-        "Enabled data-driven training decisions"
-      ],
+caseStudy: {
+  problem: [
+    "Tracking progress for 45 athletes was done manually with no centralized reporting system.",
+    "Athlete performance trends (1RM, mobility, training phase progress) were not visible over time.",
+    "Manual monthly reporting would require ~8 hours/week and made it difficult to justify premium coaching packages."
+  ],
+  solution: [
+    "Built an automated Power BI dashboard connected to SharePoint to centralize athlete performance data.",
+    "Developed ETL transformations and 17 DAX measures to calculate 1RM progression, mobility scores, and phase comparisons.",
+    "Implemented interactive filters and automated monthly reporting to eliminate manual analysis."
+  ],
+  outcome: [
+    "Reduced reporting workload by ~8 hours per week through automated dashboards.",
+    "Enabled real-time tracking of 45 athletes, improving coaching decisions and performance monitoring.",
+    "Data-driven progress reports improved athlete communication and helped increase client retention (~20%)."
+  ],
     },
   },
 
@@ -77,25 +73,22 @@ const projects: Project[] = [
       "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881ed90f1e1b2dba3947c&pm=c",
     image: "/data_architecture.png",
     imageColor: "from-purple-900 to-purple-700",
-    caseStudy: {
-      problem: [
-        "Data arrived in inconsistent formats",
-        "Duplicate and missing records in datasets",
-        "Analysts manually cleaned data for every query",
-        "No single source of truth for reporting"
-      ],
-      solution: [
-        "Implemented Medallion Architecture (Bronze, Silver, Gold)",
-        "Created ETL pipelines for cleaning and transformation",
-        "Standardized schemas and handled missing values",
-        "Built optimized SQL views for reporting"
-      ],
-      outcome: [
-        "Improved query performance from 30 seconds to 1 second",
-        "Eliminated manual data cleaning and ~saved 12 hours per week",
-        "Created reliable datasets for analysts",
-        "Enabled scalable addition of new data sources"
-      ],
+caseStudy: {
+  problem: [
+    "Operational data arrived from multiple sources with inconsistent formats, duplicates, and missing values.",
+    "Analysts spent hours manually cleaning data before every query.",
+    "No centralized analytical dataset existed, leading to inconsistent reports."
+  ],
+  solution: [
+    "Designed a Medallion Architecture warehouse (Bronze, Silver, Gold) in MySQL.",
+    "Built ETL pipelines to standardize schemas, remove duplicates, and handle missing values.",
+    "Created optimized SQL views and indexed analytical tables for reporting queries."
+  ],
+  outcome: [
+    "Improved analytical query performance from ~30 seconds to ~1 second.",
+    "Eliminated manual preprocessing and saved ~12 hours/week of analyst time.",
+    "Established a reliable single source of truth for downstream analytics and reporting."
+  ],
     },
   },
 
@@ -109,25 +102,23 @@ const projects: Project[] = [
       "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881828107f31847dcbceb&pm=c",
     image: "/Summary-Dashboard.png",
     imageColor: "from-emerald-900 to-emerald-700",
-    caseStudy: {
-      problem: [
-        "HR lacked analytical visibility into workforce data",
-        "Attrition causes were unclear",
-        "Performance reviews disconnected from retention",
-        "Headcount planning was guess-based"
-      ],
-      solution: [
-        "Built HR analytics dashboard in Power BI",
-        "Integrated SQL datasets with Power Query transformations",
-        "Used Python scripts for preprocessing",
-        "Created DAX KPIs for attrition and tenure analysis"
-      ],
-      outcome: [
-        "Identified high attrition segment in Sales department",
-        "Enabled targeted retention initiatives",
-        "Replaced manual PowerPoint reporting",
-        "Saved ~6 hours per reporting cycle"
-      ],
+caseStudy: {
+  problem: [
+    "HR lacked visibility into attrition trends, performance distribution, and workforce demographics.",
+    "Employee turnover was increasing but the root causes were unclear.",
+    "Quarterly reporting required manual PowerPoint preparation and data aggregation."
+  ],
+  solution: [
+    "Developed a Power BI HR analytics dashboard integrating SQL datasets with Power Query transformations.",
+    "Used Python preprocessing scripts and DAX measures to calculate attrition rates, tenure metrics, and performance KPIs.",
+    "Built interactive dashboards for workforce demographics, performance analysis, and retention insights."
+  ],
+  outcome: [
+    "Identified a high-risk attrition segment (mid-level Sales employees with below-average compensation).",
+    "Enabled targeted retention strategies based on department and tenure analytics.",
+    "Replaced manual reporting workflows and saved ~6 hours per quarterly reporting cycle."
+  ],
+}
     },
   },
 ];
