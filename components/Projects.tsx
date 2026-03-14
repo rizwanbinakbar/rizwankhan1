@@ -75,9 +75,9 @@ const projects: Project[] = [
     imageColor: "from-purple-900 to-purple-700",
     caseStudy: {
       problem: [
-        "Operational data arrived from multiple sources with inconsistent formats, duplicates, and missing values.",
-        "Analysts spent hours manually cleaning data before every query.",
-        "No centralized analytical dataset existed, leading to inconsistent reports."
+        "Data arrived from multiple sources with inconsistent formats, duplicates, and missing values.",
+        "Analysts spent hours manually cleaning data.",
+        "No centralized analytical dataset existed."
       ],
       solution: [
         "Designed a Medallion Architecture warehouse (Bronze, Silver, Gold) in MySQL.",
@@ -85,9 +85,9 @@ const projects: Project[] = [
         "Created optimized SQL views and indexed analytical tables for reporting queries."
       ],
       outcome: [
-        <>Improved analytical query performance from <span className="font-bold text-green-600">~30s to ~1s</span>.</>,
-        <>Eliminated manual preprocessing and saved ~12 hours/week of analyst time.</>,
-        <>Established a reliable single source of truth for downstream analytics and reporting.</>,
+        <>Improved query performance from ~30s to~1s.</>,
+        <>Eliminated manual preprocessing and <span className="font-bold text-green-600">saved ~12 hours/week</span> of analyst time.</>,
+        <>Established a reliable single source of truth for downstream analytics.</>,
       ],
     },
   },
@@ -114,9 +114,9 @@ const projects: Project[] = [
         "Built interactive dashboards for workforce demographics, performance analysis, and retention insights."
       ],
       outcome: [
-        <>Identified a high-risk attrition segment (mid-level Sales employees with <span className="font-bold text-green-600">below-average</span> compensation).</>,
+        <>Identified a high-risk attrition segment (mid-level Sales employees with below-average compensation).</>,
         <>Enabled targeted retention strategies based on department and tenure analytics.</>,
-        <>Replaced manual reporting workflows and saved ~6 hours per quarterly reporting cycle.</>,
+        <>Replaced manual reporting workflows and <span className="font-bold text-green-600">saved ~ 6 hours</span> per quarterly reporting cycle.</>,
       ],
     },
   },
