@@ -114,9 +114,9 @@ const projects: Project[] = [
         "Built interactive dashboards for workforce demographics, performance analysis, and retention insights."
       ],
       outcome: [
-        <>Identified a high-risk attrition segment (mid-level Sales employees with below-average compensation).</>,
-        <>Enabled targeted retention strategies based on department and tenure analytics.</>,
-        <>Replaced manual reporting workflows and <span className="font-bold text-green-600">saved ~ 6 hours</span> per quarterly reporting cycle.</>,
+        <>Identified a high-risk attrition segment (mid-level Sales employees with below-average compensation).<> ,
+        <>Enabled targeted retention strategies based on department and tenure analytics.<> ,
+        <>Replaced manual reporting workflows and <span className="font-bold text-green-600">saved ~ 6 hours</span> per quarterly reporting cycle.<> ,
       ],
     },
   },
@@ -196,9 +196,13 @@ function ProjectModal({
           </Button>
 
           {project.live && (
-            <Button size="sm" asChild>
+            <Button 
+              size="sm" 
+              asChild 
+              className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
+            >
               <a href={project.live} target="_blank">
-                <ExternalLink className="mr-1.5 h-4 w-4" />
+                <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
                 Demo
               </a>
             </Button>
@@ -268,9 +272,13 @@ export function Projects() {
                 </Button>
 
                 {project.live && (
-                  <Button size="sm" asChild>
+                  <Button 
+                    size="sm" 
+                    asChild 
+                    className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
+                  >
                     <a href={project.live} target="_blank">
-                      <ExternalLink className="mr-1.5 h-4 w-4" />
+                      <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
                       Demo
                     </a>
                   </Button>
