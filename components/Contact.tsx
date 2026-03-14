@@ -44,8 +44,7 @@ export function Contact() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
-          {/* Changed text color to blue below */}
-          <p className="text-[#ADD8E6] text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Have a project in mind or just want to say hello? I'd love to hear
             from you.
           </p>
@@ -55,48 +54,47 @@ export function Contact() {
           {/* Contact info */}
           <div className="space-y-6 animate-fade-in-up">
             <div className="flex items-start gap-4">
-              {/* Icon color changed to blue */}
-              <Mail className="h-5 w-5 mt-0.5 text-[#ADD8E6] shrink-0" />
+              <Mail className="h-5 w-5 mt-0.5 text-muted-foreground shrink-0" />
               <div>
                 <p className="font-medium">Email</p>
                 <a
                   href="mailto:rizwanfordata@gmail.com"
-                  className="text-[#ADD8E6] hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   rizwanfordata@gmail.com
                 </a>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <MapPin className="h-5 w-5 mt-0.5 text-[#ADD8E6] shrink-0" />
+              <MapPin className="h-5 w-5 mt-0.5 text-muted-foreground shrink-0" />
               <div>
                 <p className="font-medium">Location</p>
-                <p className="text-[#ADD8E6]">Available Worldwide · Remote</p>
+                <p className="text-muted-foreground">Available Worldwide · Remote</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <Github className="h-5 w-5 mt-0.5 text-[#ADD8E6] shrink-0" />
+              <Github className="h-5 w-5 mt-0.5 text-muted-foreground shrink-0" />
               <div>
                 <p className="font-medium">GitHub</p>
                 <a
                   href="https://github.com/rizwanbinakbar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#ADD8E6] hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   github.com/rizwanbinakbar
                 </a>
               </div>
             </div>
             <div className="flex items-start gap-4">
-              <Linkedin className="h-5 w-5 mt-0.5 text-[#ADD8E6] shrink-0" />
+              <Linkedin className="h-5 w-5 mt-0.5 text-muted-foreground shrink-0" />
               <div>
                 <p className="font-medium">LinkedIn</p>
                 <a
                   href="https://linkedin.com/in/rizwanbinakbar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#ADD8E6] hover:text-foreground transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   linkedin.com/in/rizwanbinakbar
                 </a>
@@ -110,7 +108,7 @@ export function Contact() {
               <div className="flex items-center justify-center h-full min-h-48 rounded-lg border border-border bg-card p-8 text-center">
                 <div>
                   <p className="text-xl font-semibold mb-2">Message sent! 🎉</p>
-                  <p className="text-[#ADD8E6]">
+                  <p className="text-muted-foreground">
                     Thanks for reaching out. I'll get back to you soon.
                   </p>
                 </div>
@@ -152,7 +150,13 @@ export function Contact() {
                 {error && (
                   <p className="text-sm text-destructive">{error}</p>
                 )}
-                <Button type="submit" className="w-full" disabled={sending}>
+                
+                {/* BUTTON UPDATED BELOW */}
+                <Button 
+                  type="submit" 
+                  className="w-full bg-[#ADD8E6] hover:bg-[#9cc9d8] text-black" 
+                  disabled={sending}
+                >
                   {sending ? "Sending…" : "Send Message"}
                 </Button>
               </form>
