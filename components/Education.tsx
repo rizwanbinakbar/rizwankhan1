@@ -224,7 +224,8 @@ export function Education() {
 
         {/* University */}
         <div className="relative border-l border-border pl-8 mb-16 animate-fade-in-up">
-          <span className="absolute -left-[2.6rem] flex h-5 w-5 items-center justify-center rounded-full bg-primary ring-4 ring-background" />
+          {/* CIRCLE COLOR UPDATED BELOW */}
+          <span className="absolute -left-[2.6rem] flex h-5 w-5 items-center justify-center rounded-full bg-[#2c4c9c] ring-4 ring-background" />
 
           <div className="mb-1 flex flex-wrap items-center gap-3">
             <h3 className="font-semibold text-xl">{university.name}</h3>
