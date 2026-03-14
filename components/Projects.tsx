@@ -46,7 +46,7 @@ const projects: Project[] = [
     imageColor: "from-blue-900 to-blue-700",
     caseStudy: {
       problem:
-        "A fitness coach managing 45 athletes had no centralized system to track individual progress across training cycles. Performance data was scattered across spreadsheets, making it nearly impossible to compare athletes, identify plateaus, or prepare monthly reports without spending hours on manual compilation. Decisions were reactive rather than data-driven, and the coach struggled to communicate progress clearly to athletes and stakeholders.",
+        "- No formal reporting system. - Athlete progress was not visually tracked over time. - Difficult to show measurable improvement. - Hard to justify premium training packages. - Reporting manually would have taken *~8* *hours* per week.  The coach needed a structured and professional way to present results.",
       solution:
         "I designed and built a Power BI dashboard connected to SharePoint as the data source. The solution included a custom ETL pipeline that cleaned and transformed raw training logs into structured analytical tables. Key metrics such as 1RM (one-rep max) progress, mobility scores, and phase-by-phase performance comparisons were calculated using DAX measures. Interactive filters let the coach drill down by athlete, date range, and training phase. Automated monthly report generation was configured via Power BI's scheduled refresh and export features.",
       outcome:
