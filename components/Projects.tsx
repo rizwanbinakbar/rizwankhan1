@@ -169,7 +169,7 @@ function ProjectModal({
 
           {/* Problem */}
           <div>
-            <h4 className="font-semibold mb-2">🔍 Problem</h4>
+            <h4 className="font-semibold mb-2">Problem</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
               {project.caseStudy.problem.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -179,7 +179,7 @@ function ProjectModal({
 
           {/* Solution */}
           <div>
-            <h4 className="font-semibold mb-2">🛠 Solution</h4>
+            <h4 className="font-semibold mb-2">Solution</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
               {project.caseStudy.solution.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -189,7 +189,7 @@ function ProjectModal({
 
           {/* Outcome */}
           <div>
-            <h4 className="font-semibold mb-2">✅ Outcome</h4>
+            <h4 className="font-semibold mb-2">Outcome</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
               {project.caseStudy.outcome.map((item, i) => (
                 <li key={i}>{item}</li>
