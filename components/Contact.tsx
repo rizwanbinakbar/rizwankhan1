@@ -16,16 +16,14 @@ export function Contact() {
     e.preventDefault();
     if (!formRef.current) return;
 
-    const serviceId =
-      (import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined) ??
-      "service_93408m7";
-    const templateId =
-      (import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined) ??
-      "template_1gupdeb";
-    const publicKey =
-      (import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined) ??
-      "ZqPm3NJgT4e8m48a_";
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
 
+    if (!serviceId || !templateId || !publicKey) {
+      setError("Contact form is not configured. Please reach out via email directly.");
+      return;
+    }
     setSending(true);
     setError(null);
     try {
@@ -120,7 +118,7 @@ export function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" name="from_name" placeholder="Your name" required />
+                    <Input id="name" name="from_name" placeholder="Your name" required maxLength={100} />
                   </div>
                   <div className="space-y-1.5">
                     <Label htmlFor="email">Email</Label>
@@ -130,12 +128,13 @@ export function Contact() {
                       type="email"
                       placeholder="you@example.com"
                       required
+                      maxLength={254}
                     />
                   </div>
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" name="subject" placeholder="What's this about?" required />
+                  <Input id="subject" name="subject" placeholder="What's this about?" required maxLength={150} />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="message">Message</Label>
@@ -145,6 +144,7 @@ export function Contact() {
                     placeholder="Your message…"
                     rows={5}
                     required
+                    maxLength={2000}
                   />
                 </div>
                 {error && (
