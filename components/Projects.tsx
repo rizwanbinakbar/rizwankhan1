@@ -114,9 +114,9 @@ const projects: Project[] = [
         "Built interactive dashboards for workforce demographics, performance analysis, and retention insights."
       ],
       outcome: [
-        <>Identified a high-risk attrition segment (mid-level Sales employees with below-average compensation).<> ,
-        <>Enabled targeted retention strategies based on department and tenure analytics.<> ,
-        <>Replaced manual reporting workflows and <span className="font-bold text-green-600">saved ~ 6 hours</span> per quarterly reporting cycle.<> ,
+        <>Identified a high-risk attrition segment (mid-level Sales employees with below-average compensation).</>,
+        <>Enabled targeted retention strategies based on department and tenure analytics.</>,
+        <>Replaced manual reporting workflows and <span className="font-bold text-green-600">saved ~ 6 hours</span> per quarterly reporting cycle.</>,
       ],
     },
   },
@@ -156,7 +156,6 @@ function ProjectModal({
         )}
 
         <div className="space-y-5 mt-2">
-          {/* Problem */}
           <div>
             <h4 className="font-semibold mb-2">Problem</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
@@ -166,7 +165,6 @@ function ProjectModal({
             </ul>
           </div>
 
-          {/* Solution */}
           <div>
             <h4 className="font-semibold mb-2">Solution</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
@@ -176,7 +174,6 @@ function ProjectModal({
             </ul>
           </div>
 
-          {/* Outcome */}
           <div>
             <h4 className="font-semibold mb-2">Outcome</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
@@ -189,7 +186,7 @@ function ProjectModal({
 
         <div className="flex gap-3 mt-4">
           <Button variant="outline" size="sm" asChild>
-            <a href={project.github} target="_blank">
+            <a href={project.github} target="_blank" rel="noreferrer">
               <Github className="mr-1.5 h-4 w-4" />
               Code
             </a>
@@ -201,7 +198,7 @@ function ProjectModal({
               asChild 
               className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
             >
-              <a href={project.live} target="_blank">
+              <a href={project.live} target="_blank" rel="noreferrer">
                 <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
                 Demo
               </a>
@@ -237,6 +234,7 @@ export function Projects() {
                 {project.image ? (
                   <img
                     src={project.image}
+                    alt={project.title}
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -264,8 +262,8 @@ export function Projects() {
               </CardContent>
 
               <CardFooter className="gap-3">
-                <Button variant="outline" size="sm" asChild>
-                  <a href={project.github} target="_blank">
+                <Button variant="outline" size="sm" asChild onClick={(e) => e.stopPropagation()}>
+                  <a href={project.github} target="_blank" rel="noreferrer">
                     <Github className="mr-1.5 h-4 w-4" />
                     Code
                   </a>
@@ -276,8 +274,9 @@ export function Projects() {
                     size="sm" 
                     asChild 
                     className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
+                    onClick={(e) => e.stopPropagation()}
                   >
-                    <a href={project.live} target="_blank">
+                    <a href={project.live} target="_blank" rel="noreferrer">
                       <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
                       Demo
                     </a>
