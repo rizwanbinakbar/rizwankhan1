@@ -91,8 +91,8 @@ const projects: Project[] = [
         "Built optimized SQL views for reporting"
       ],
       outcome: [
-        "Significantly improved query performance",
-        "Eliminated manual data cleaning",
+        "Improved query performance from 30 seconds to 1 second",
+        "Eliminated manual data cleaning and ~saved 12 hours per week",
         "Created reliable datasets for analysts",
         "Enabled scalable addition of new data sources"
       ],
