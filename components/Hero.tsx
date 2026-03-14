@@ -7,7 +7,7 @@ export function Hero() {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center px-4 pt-16">
+    <section className="hero-glow min-h-screen flex flex-col justify-center px-4 pt-16">
       <div className="max-w-7xl mx-auto w-full">
         {/* Two-column hero layout */}
         <div className="flex flex-col md:flex-row items-center gap-12 py-16">
@@ -81,7 +81,7 @@ export function Hero() {
           <div className="flex-shrink-0 relative animate-scale-in md:-ml-16">
             <div className="relative w-80 h-80 md:w-[420px] md:h-[420px]">
               {/* Circular profile photo */}
-              <div className="w-full h-full rounded-full overflow-hidden border-4 border-border bg-muted flex items-center justify-center">
+              <div className="w-full h-full rounded-full overflow-hidden border-4 border-primary/30 bg-muted flex items-center justify-center">
                 {imgError ? (
                   <div className="flex flex-col items-center justify-center text-center text-muted-foreground p-6 gap-3">
                     <User className="h-16 w-16 opacity-40" />
