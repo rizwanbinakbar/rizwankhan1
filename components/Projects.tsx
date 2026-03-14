@@ -70,7 +70,7 @@ const projects: Project[] = [
   {
     title: "SQL Data Warehouse",
     description:
-      "Built a layered data warehouse using Medallion Architecture with optimized analytical queries.",
+      "Developed a layered data warehouse using Medallion Architecture with optimized analytical queries.",
     tags: ["SQL", "ETL", "Medallion Architecture", "MySQL"],
     github: "https://github.com/rizwanbinakbar/Sql-Data-warehouse-Project",
     live:
