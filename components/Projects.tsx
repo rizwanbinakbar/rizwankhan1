@@ -55,13 +55,12 @@ const projects: Project[] = [
       solution: [
         "Built a Power BI dashboard connected to SharePoint",
         "Designed ETL pipeline to clean raw training logs",
-        "Created DAX measures for 1RM progress and mobility scores",
-        "Added interactive filters for athlete and training phase",
-        "Configured automated monthly reporting"
+        "Created 17 DAX measures to calculate performance trends and training comparisons.",
+        "Added interactive filters for athlete and training phase"
       ],
       outcome: [
-        "Reporting time reduced from 8+ hours to near zero",
-        "Coach gained real-time visibility of athlete progress",
+        "Eliminated manual reporting (~8 hours saved per week)",
+        "Increased client retention by an estimated 20% in the first month.",
         "Improved communication with athlete-facing reports",
         "Enabled data-driven training decisions"
       ],
