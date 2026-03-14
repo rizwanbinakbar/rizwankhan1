@@ -24,7 +24,8 @@ export function Hero() {
 
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
               I'm<br />
-              <span className="text-primary">Rizwan Khan</span>
+              {/* TEXT COLOR CHANGED TO NAVY BLUE BELOW */}
+              <span className="text-[#2c4c9c]">Rizwan Khan</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-3 font-medium">
@@ -38,11 +39,11 @@ export function Hero() {
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button size="lg" asChild>
-  <a href="/Rizwan_Resume_DA.pdf" target="_blank" rel="noopener noreferrer">
-    <Download className="mr-2 h-4 w-4" />
-    View Resume
-  </a>
-</Button>
+                <a href="/Rizwan_Resume_DA.pdf" target="_blank" rel="noopener noreferrer">
+                  <Download className="mr-2 h-4 w-4" />
+                  View Resume
+                </a>
+              </Button>
               <Button variant="outline" size="lg" asChild>
                 <a href="#projects">View My Work</a>
               </Button>
@@ -80,8 +81,8 @@ export function Hero() {
           {/* Right column – profile image */}
           <div className="flex-shrink-0 relative animate-scale-in md:-ml-16">
             <div className="relative w-80 h-80 md:w-[420px] md:h-[420px]">
-              {/* Circular profile photo */}
-              <div className="w-full h-full rounded-full overflow-hidden border-4 border-primary/30 bg-muted flex items-center justify-center">
+              {/* PHOTO BORDER COLOR CHANGED TO NAVY BLUE BELOW */}
+              <div className="w-full h-full rounded-full overflow-hidden border-4 border-[#2c4c9c] bg-muted flex items-center justify-center">
                 {imgError ? (
                   <div className="flex flex-col items-center justify-center text-center text-muted-foreground p-6 gap-3">
                     <User className="h-16 w-16 opacity-40" />
