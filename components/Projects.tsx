@@ -42,24 +42,24 @@ const projects: Project[] = [
       "https://github.com/rizwanbinakbar/Athlete-Performance-Tracking-Dashboard",
     live:
       "https://rizwanbinakbar.notion.site/r?p=31540e4cba6880b6a069ed93d0489cb1&pm=c",
-    image: "/FitnessDashboard1.png",
+    image: "FitnessDashboard1.png",
     imageColor: "from-blue-900 to-blue-700",
-caseStudy: {
-  problem: [
-    "Tracking progress for 45 athletes was done manually with no centralized reporting system.",
-    "Athlete performance trends (1RM, mobility, training phase progress) were not visible over time.",
-    "Manual monthly reporting would require ~8 hours/week and made it difficult to justify premium coaching packages."
-  ],
-  solution: [
-    "Built an automated Power BI dashboard connected to SharePoint to centralize athlete performance data.",
-    "Developed ETL transformations and 17 DAX measures to calculate 1RM progression, mobility scores, and phase comparisons.",
-    "Implemented interactive filters and automated monthly reporting to eliminate manual analysis."
-  ],
-  outcome: [
-    "Reduced reporting workload by ~8 hours per week through automated dashboards.",
-    "Enabled real-time tracking of 45 athletes, improving coaching decisions and performance monitoring.",
-    "Data-driven progress reports improved athlete communication and helped increase client retention (~20%)."
-  ],
+    caseStudy: {
+      problem: [
+        "Tracking progress for 45 athletes was done manually with no centralized reporting system.",
+        "Athlete performance trends (1RM, mobility, training phase progress) were not visible over time.",
+        "Manual monthly reporting required ~8 hours/week."
+      ],
+      solution: [
+        "Built an automated Power BI dashboard connected to SharePoint.",
+        "Developed ETL transformations and 17 DAX measures for performance tracking.",
+        "Added interactive filters and automated reporting."
+      ],
+      outcome: [
+        "Reduced reporting workload by ~8 hours per week.",
+        "Enabled real-time tracking of 45 athletes.",
+        "Improved athlete communication and retention."
+      ],
     },
   },
 
@@ -71,24 +71,24 @@ caseStudy: {
     github: "https://github.com/rizwanbinakbar/Sql-Data-warehouse-Project",
     live:
       "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881ed90f1e1b2dba3947c&pm=c",
-    image: "/data_architecture.png",
+    image: "data_architecture.png",
     imageColor: "from-purple-900 to-purple-700",
-caseStudy: {
-  problem: [
-    "Operational data arrived from multiple sources with inconsistent formats, duplicates, and missing values.",
-    "Analysts spent hours manually cleaning data before every query.",
-    "No centralized analytical dataset existed, leading to inconsistent reports."
-  ],
-  solution: [
-    "Designed a Medallion Architecture warehouse (Bronze, Silver, Gold) in MySQL.",
-    "Built ETL pipelines to standardize schemas, remove duplicates, and handle missing values.",
-    "Created optimized SQL views and indexed analytical tables for reporting queries."
-  ],
-  outcome: [
-    "Improved analytical query performance from ~30 seconds to ~1 second.",
-    "Eliminated manual preprocessing and saved ~12 hours/week of analyst time.",
-    "Established a reliable single source of truth for downstream analytics and reporting."
-  ],
+    caseStudy: {
+      problem: [
+        "Operational data arrived with inconsistent formats and duplicates.",
+        "Analysts spent hours manually cleaning datasets.",
+        "No centralized analytical dataset existed."
+      ],
+      solution: [
+        "Designed a Medallion Architecture warehouse (Bronze → Silver → Gold).",
+        "Built ETL pipelines to clean and standardize datasets.",
+        "Created indexed SQL views for reporting queries."
+      ],
+      outcome: [
+        "Improved analytical query speed from ~30s to ~1s.",
+        "Saved ~12 hours/week of analyst preprocessing time.",
+        "Created a reliable single source of truth."
+      ],
     },
   },
 
@@ -100,25 +100,24 @@ caseStudy: {
     github: "https://github.com/rizwanbinakbar/HR-Analytics-Dashboard",
     live:
       "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881828107f31847dcbceb&pm=c",
-    image: "/Summary-Dashboard.png",
+    image: "Summary-Dashboard.png",
     imageColor: "from-emerald-900 to-emerald-700",
-caseStudy: {
-  problem: [
-    "HR lacked visibility into attrition trends, performance distribution, and workforce demographics.",
-    "Employee turnover was increasing but the root causes were unclear.",
-    "Quarterly reporting required manual PowerPoint preparation and data aggregation."
-  ],
-  solution: [
-    "Developed a Power BI HR analytics dashboard integrating SQL datasets with Power Query transformations.",
-    "Used Python preprocessing scripts and DAX measures to calculate attrition rates, tenure metrics, and performance KPIs.",
-    "Built interactive dashboards for workforce demographics, performance analysis, and retention insights."
-  ],
-  outcome: [
-    "Identified a high-risk attrition segment (mid-level Sales employees with below-average compensation).",
-    "Enabled targeted retention strategies based on department and tenure analytics.",
-    "Replaced manual reporting workflows and saved ~6 hours per quarterly reporting cycle."
-  ],
-}
+    caseStudy: {
+      problem: [
+        "HR lacked visibility into attrition and performance trends.",
+        "Turnover was increasing but causes were unclear.",
+        "Quarterly reporting required manual PowerPoint preparation."
+      ],
+      solution: [
+        "Built a Power BI HR analytics dashboard.",
+        "Integrated SQL datasets with Power Query transformations.",
+        "Created Python preprocessing scripts and DAX KPIs."
+      ],
+      outcome: [
+        "Identified high-risk attrition segments.",
+        "Enabled targeted retention strategies.",
+        "Saved ~6 hours per reporting cycle."
+      ],
     },
   },
 ];
@@ -139,6 +138,7 @@ function ProjectModal({
       <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-xl">{project.title}</DialogTitle>
+
           <div className="flex flex-wrap gap-2 mt-2">
             {project.tags.map((tag) => (
               <Badge key={tag} variant="secondary">
@@ -157,8 +157,6 @@ function ProjectModal({
         )}
 
         <div className="space-y-5 mt-2">
-
-          {/* Problem */}
           <div>
             <h4 className="font-semibold mb-2">Problem</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
@@ -168,7 +166,6 @@ function ProjectModal({
             </ul>
           </div>
 
-          {/* Solution */}
           <div>
             <h4 className="font-semibold mb-2">Solution</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
@@ -178,7 +175,6 @@ function ProjectModal({
             </ul>
           </div>
 
-          {/* Outcome */}
           <div>
             <h4 className="font-semibold mb-2">Outcome</h4>
             <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
@@ -187,12 +183,15 @@ function ProjectModal({
               ))}
             </ul>
           </div>
-
         </div>
 
         <div className="flex gap-3 mt-4">
           <Button variant="outline" size="sm" asChild>
-            <a href={project.github} target="_blank">
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Github className="mr-1.5 h-4 w-4" />
               Code
             </a>
@@ -200,14 +199,17 @@ function ProjectModal({
 
           {project.live && (
             <Button size="sm" asChild>
-              <a href={project.live} target="_blank">
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <ExternalLink className="mr-1.5 h-4 w-4" />
                 Demo
               </a>
             </Button>
           )}
         </div>
-
       </DialogContent>
     </Dialog>
   );
@@ -235,11 +237,11 @@ export function Projects() {
               className="cursor-pointer hover:shadow-md transition"
               onClick={() => setSelectedProject(project)}
             >
-
               <div className="w-full h-56 overflow-hidden">
                 {project.image ? (
                   <img
                     src={project.image}
+                    alt={project.title}
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -268,7 +270,11 @@ export function Projects() {
 
               <CardFooter className="gap-3">
                 <Button variant="outline" size="sm" asChild>
-                  <a href={project.github} target="_blank">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Github className="mr-1.5 h-4 w-4" />
                     Code
                   </a>
@@ -276,7 +282,11 @@ export function Projects() {
 
                 {project.live && (
                   <Button size="sm" asChild>
-                    <a href={project.live} target="_blank">
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <ExternalLink className="mr-1.5 h-4 w-4" />
                       Demo
                     </a>
