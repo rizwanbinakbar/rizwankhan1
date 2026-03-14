@@ -24,7 +24,7 @@ export function Hero() {
 
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
               I'm<br />
-              <span className="text-[#2c4c9c]">Rizwan Khan</span>
+              <span className="text-[#3d5dad]">Rizwan Khan</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-3 font-medium">
