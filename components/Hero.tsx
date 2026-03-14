@@ -87,12 +87,12 @@ export function Hero() {
                     <User className="h-16 w-16 opacity-40" />
                     <p className="text-xs leading-relaxed opacity-70">
                       Place your photo at<br />
-                      <code className="font-mono font-semibold">public/Rizwan.PFP.png</code>
+                      <code className="font-mono font-semibold">public/Rizwan.pfp.nobg.png</code>
                     </p>
                   </div>
                 ) : (
                   <img
-                    src="/Rizwan.PFP.png"
+                    src="/Rizwan.pfp.nobg.png"
                     alt="Rizwan Khan"
                     className="w-full h-full object-cover"
                     onError={() => setImgError(true)}
