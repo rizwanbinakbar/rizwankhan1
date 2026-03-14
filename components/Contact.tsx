@@ -154,7 +154,7 @@ export function Contact() {
                 {/* BUTTON UPDATED BELOW */}
                 <Button 
                   type="submit" 
-                  className="w-full bg-[#ADD8E6] hover:bg-[#9cc9d8] text-black" 
+                  className="w-full bg-[#2c4c9c] hover:bg-[#264799] text-black" 
                   disabled={sending}
                 >
                   {sending ? "Sending…" : "Send Message"}
