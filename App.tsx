@@ -24,7 +24,13 @@ export default function App() {
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="portfolio-theme" attribute="class" enableSystem>
-      <div className="min-h-screen bg-background transition-colors duration-300">
+      <div className="relative min-h-screen portfolio-bg transition-colors duration-300">
+        {/* Decorative ambient blobs – fixed so they span the whole page */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
+          <div className="animate-blob blob-delay-1 absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[100px]" />
+          <div className="animate-blob blob-delay-2 absolute top-1/2 -right-40 w-[420px] h-[420px] rounded-full bg-primary/10 blur-[100px]" />
+          <div className="animate-blob blob-delay-3 absolute -bottom-32 left-1/3 w-[380px] h-[380px] rounded-full bg-primary/10 blur-[100px]" />
+        </div>
         {/* Navigation */}
         <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,7 +93,7 @@ export default function App() {
         </nav>
 
         {/* Main Content */}
-        <main>
+        <main className="relative z-10">
           <div id="home">
             <Hero />
           </div>
@@ -109,7 +115,7 @@ export default function App() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-secondary/10 py-12 px-4">
+        <footer className="relative z-10 bg-secondary/10 py-12 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="mb-4">Rizwan Khan</h3>
             <p className="text-muted-foreground mb-6">

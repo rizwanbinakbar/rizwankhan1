@@ -211,6 +211,33 @@
     background: radial-gradient(ellipse 80% 60% at 50% -10%, oklch(0.75 0.18 264) / 0.18, transparent 70%);
   }
 
+  /* Portfolio background – subtle dot grid */
+  .portfolio-bg {
+    background-color: var(--background);
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--primary) 13%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+
+  /* Ambient blob animation */
+  @keyframes blob-drift {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    25%       { transform: translate(40px, -60px) scale(1.08); }
+    50%       { transform: translate(-30px, 30px) scale(0.94); }
+    75%       { transform: translate(20px, 50px) scale(1.04); }
+  }
+
+  .animate-blob {
+    animation: blob-drift 22s ease-in-out infinite;
+  }
+
+  .blob-delay-1 { animation-delay: 0s; }
+  .blob-delay-2 { animation-delay: 7s; }
+  .blob-delay-3 { animation-delay: 14s; }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
