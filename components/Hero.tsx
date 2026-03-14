@@ -24,7 +24,6 @@ export function Hero() {
 
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
               I'm<br />
-              {/* TEXT COLOR CHANGED TO NAVY BLUE BELOW */}
               <span className="text-[#2c4c9c]">Rizwan Khan</span>
             </h1>
 
@@ -38,7 +37,12 @@ export function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button size="lg" asChild>
+              {/* VIEW RESUME BUTTON UPDATED BELOW */}
+              <Button 
+                size="lg" 
+                asChild 
+                className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
+              >
                 <a href="/Rizwan_Resume_DA.pdf" target="_blank" rel="noopener noreferrer">
                   <Download className="mr-2 h-4 w-4" />
                   View Resume
@@ -81,7 +85,6 @@ export function Hero() {
           {/* Right column – profile image */}
           <div className="flex-shrink-0 relative animate-scale-in md:-ml-16">
             <div className="relative w-80 h-80 md:w-[420px] md:h-[420px]">
-              {/* PHOTO BORDER COLOR CHANGED TO NAVY BLUE BELOW */}
               <div className="w-full h-full rounded-full overflow-hidden border-4 border-[#2c4c9c] bg-muted flex items-center justify-center">
                 {imgError ? (
                   <div className="flex flex-col items-center justify-center text-center text-muted-foreground p-6 gap-3">
@@ -101,7 +104,6 @@ export function Hero() {
                 )}
               </div>
 
-              {/* Available for hire badge */}
               <div className="absolute bottom-3 -right-2 md:right-0 bg-background border rounded-full px-3 py-1.5 flex items-center gap-2 shadow-lg whitespace-nowrap">
                 <span className="w-2.5 h-2.5 rounded-full bg-green-500 inline-block flex-shrink-0"></span>
                 <span className="text-sm font-medium">Available for hire</span>
