@@ -23,7 +23,7 @@ export function Hero() {
             </Badge>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-              Hello, I'm<br />
+              I'm<br />
               <span className="text-primary">Rizwan Khan</span>
             </h1>
 
