@@ -24,7 +24,7 @@ export function Hero() {
 
             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
               I'm<br />
-              <span className="text-[#3d5dad]">Rizwan Khan</span>
+              <span className="gradient-text">Rizwan Khan</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-3 font-medium">
@@ -114,16 +114,16 @@ export function Hero() {
 
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-4 py-8 border-t">
-          <div>
-            <p className="text-3xl md:text-4xl font-bold">6+</p>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-bold gradient-text">6+</p>
             <p className="text-muted-foreground text-sm mt-1">Projects</p>
           </div>
-          <div>
-            <p className="text-3xl md:text-4xl font-bold">2+</p>
+          <div className="text-center border-x">
+            <p className="text-3xl md:text-4xl font-bold gradient-text">2+</p>
             <p className="text-muted-foreground text-sm mt-1">Years Exp</p>
           </div>
-          <div>
-            <p className="text-3xl md:text-4xl font-bold">100%</p>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-bold gradient-text">100%</p>
             <p className="text-muted-foreground text-sm mt-1">Client Satisfaction</p>
           </div>
         </div>

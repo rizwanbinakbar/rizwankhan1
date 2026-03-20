@@ -15,7 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import { Github, ExternalLink, LayoutDashboard } from "lucide-react";
+import { Github, ExternalLink, LayoutDashboard, Eye } from "lucide-react";
 
 interface Project {
   title: string;
@@ -213,78 +213,164 @@ function ProjectModal({
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const featured = projects[0];
+  const rest = projects.slice(1);
+
   return (
     <section className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <span className="section-label">Portfolio</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-3 gradient-text">Featured Projects</h2>
+          <div className="section-accent-line" />
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5">
             A selection of real-world data analytics and engineering projects.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Card
-              key={project.title}
-              className="cursor-pointer hover:shadow-md transition"
-              onClick={() => setSelectedProject(project)}
-            >
-              <div className="w-full h-56 overflow-hidden">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
+        <div className="space-y-6">
+          {/* Featured first project — full-width horizontal card */}
+          <Card
+            className="cursor-pointer overflow-hidden card-lift group border-2 hover:border-primary/50 transition-all duration-300"
+            onClick={() => setSelectedProject(featured)}
+          >
+            <div className="flex flex-col lg:flex-row">
+              {/* Image side */}
+              <div className="relative lg:w-1/2 h-64 lg:h-80 overflow-hidden shrink-0">
+                {featured.image ? (
+                  <>
+                    <img
+                      src={featured.image}
+                      alt={featured.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="flex items-center gap-2 text-white font-semibold text-base">
+                        <Eye className="h-5 w-5" />
+                        <span>View Case Study</span>
+                      </div>
+                    </div>
+                  </>
                 ) : (
-                  <div
-                    className={`w-full h-full bg-gradient-to-br ${project.imageColor} flex items-center justify-center`}
-                  >
+                  <div className={`w-full h-full bg-gradient-to-br ${featured.imageColor} flex items-center justify-center`}>
                     <LayoutDashboard className="h-16 w-16 text-white/30" />
                   </div>
                 )}
+                <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1">
+                  ★ Featured
+                </Badge>
               </div>
 
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-              </CardHeader>
-
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
+              {/* Content side */}
+              <div className="lg:w-1/2 flex flex-col justify-between p-6 lg:p-8">
+                <div>
+                  <CardHeader className="p-0 mb-4">
+                    <CardTitle className="text-2xl mb-2">{featured.title}</CardTitle>
+                    <CardDescription className="text-base leading-relaxed">{featured.description}</CardDescription>
+                  </CardHeader>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {featured.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">{tag}</Badge>
+                    ))}
+                  </div>
+                  <p className="text-sm text-primary font-medium flex items-center gap-1.5 mt-4">
+                    <Eye className="h-3.5 w-3.5" />
+                    Click to view full case study
+                  </p>
                 </div>
-              </CardContent>
-
-              <CardFooter className="gap-3">
-                <Button variant="outline" size="sm" asChild onClick={(e) => e.stopPropagation()}>
-                  <a href={project.github} target="_blank" rel="noreferrer">
-                    <Github className="mr-1.5 h-4 w-4" />
-                    Code
-                  </a>
-                </Button>
-
-                {project.live && (
-                  <Button 
-                    size="sm" 
-                    asChild 
-                    className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <a href={project.live} target="_blank" rel="noreferrer">
-                      <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
-                      Demo
+                <div className="flex gap-3 mt-6">
+                  <Button variant="outline" size="sm" asChild onClick={(e) => e.stopPropagation()}>
+                    <a href={featured.github} target="_blank" rel="noreferrer">
+                      <Github className="mr-1.5 h-4 w-4" />
+                      Code
                     </a>
                   </Button>
-                )}
-              </CardFooter>
-            </Card>
-          ))}
+                  {featured.live && (
+                    <Button
+                      size="sm"
+                      asChild
+                      className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <a href={featured.live} target="_blank" rel="noreferrer">
+                        <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
+                        Live Demo
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Remaining project cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {rest.map((project) => (
+              <Card
+                key={project.title}
+                className="cursor-pointer overflow-hidden card-lift group border hover:border-primary/50 transition-all duration-300"
+                onClick={() => setSelectedProject(project)}
+              >
+                {/* Image with overlay */}
+                <div className="relative w-full h-56 overflow-hidden">
+                  {project.image ? (
+                    <>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="flex items-center gap-2 text-white font-semibold">
+                          <Eye className="h-5 w-5" />
+                          <span>View Case Study</span>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className={`w-full h-full bg-gradient-to-br ${project.imageColor} flex items-center justify-center`}>
+                      <LayoutDashboard className="h-16 w-16 text-white/30" />
+                    </div>
+                  )}
+                </div>
+
+                <CardHeader>
+                  <CardTitle>{project.title}</CardTitle>
+                  <CardDescription>{project.description}</CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">{tag}</Badge>
+                    ))}
+                  </div>
+                </CardContent>
+
+                <CardFooter className="gap-3">
+                  <Button variant="outline" size="sm" asChild onClick={(e) => e.stopPropagation()}>
+                    <a href={project.github} target="_blank" rel="noreferrer">
+                      <Github className="mr-1.5 h-4 w-4" />
+                      Code
+                    </a>
+                  </Button>
+                  {project.live && (
+                    <Button
+                      size="sm"
+                      asChild
+                      className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <a href={project.live} target="_blank" rel="noreferrer">
+                        <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
+                        Demo
+                      </a>
+                    </Button>
+                  )}
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -36,7 +36,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="shrink-0">
-                <h3 className="tracking-tight">Rizwan Khan</h3>
+                <h3 className="tracking-tight gradient-text font-bold">Rizwan Khan</h3>
               </div>
               
               {/* Desktop Navigation */}
@@ -115,9 +115,9 @@ export default function App() {
         </main>
 
         {/* Footer */}
-        <footer className="relative z-10 bg-secondary/10 py-12 px-4">
+        <footer className="relative z-10 bg-secondary/10 py-12 px-4 border-t">
           <div className="max-w-4xl mx-auto text-center">
-            <h3 className="mb-4">Rizwan Khan</h3>
+            <h3 className="mb-2 gradient-text font-bold">Rizwan Khan</h3>
             <p className="text-muted-foreground mb-6">
               Data Analyst | Power BI Developer | ETL & Cloud
             </p>
