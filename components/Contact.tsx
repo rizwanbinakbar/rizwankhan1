@@ -46,7 +46,7 @@ export function Contact() {
           <span className="section-label">Let's Connect</span>
           <h2 className="text-4xl font-bold mb-3 gradient-text">Get in Touch</h2>
           <div className="section-accent-line" />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5 italic">
             Have a project in mind or just want to say hello? I'd love to hear
             from you.
           </p>

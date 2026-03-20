@@ -29,8 +29,8 @@ export function Experience() {
           <span className="section-label">Career</span>
           <h2 className="text-4xl font-bold mb-3 gradient-text">Work Experience</h2>
           <div className="section-accent-line" />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5">
-            My journey building solutions that matters.
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5 italic">
+            Turning messy data into clear decisions — one pipeline at a time.
           </p>
         </div>
 
@@ -43,7 +43,7 @@ export function Experience() {
               <div className="mb-1 flex flex-wrap items-center gap-3">
                 <h3 className="font-semibold text-xl">{exp.role}</h3>
                 <span className="text-muted-foreground">·</span>
-                <span className="text-muted-foreground font-medium">{exp.company}</span>
+                <span className="text-primary/80 font-medium italic">{exp.company}</span>
               </div>
               <p className="text-sm text-muted-foreground mb-3">
                 {exp.period} · {exp.location}

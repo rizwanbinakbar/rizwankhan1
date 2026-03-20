@@ -118,7 +118,7 @@ export default function App() {
         <footer className="relative z-10 bg-secondary/10 py-12 px-4 border-t">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="mb-2 gradient-text font-bold">Rizwan Khan</h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-primary/70 mb-6 italic">
               Data Analyst | Power BI Developer | ETL & Cloud
             </p>
             <p className="text-sm text-muted-foreground">

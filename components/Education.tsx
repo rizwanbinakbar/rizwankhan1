@@ -219,8 +219,8 @@ export function Education() {
           <span className="section-label">Background</span>
           <h2 className="text-4xl font-bold mb-3 gradient-text">Education</h2>
           <div className="section-accent-line" />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5">
-            Academic background and professional certifications.
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5 italic">
+            Where curiosity meets credentials — always learning, always growing.
           </p>
         </div>
 

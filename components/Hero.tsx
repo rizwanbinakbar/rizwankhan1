@@ -27,13 +27,13 @@ export function Hero() {
               <span className="gradient-text">Rizwan Khan</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground mb-3 font-medium">
+            <p className="text-lg md:text-xl text-primary/80 mb-3 font-medium italic">
               Data Analyst · Power BI Developer · ETL & Cloud Infrastructure
             </p>
 
             <p className="text-sm md:text-base text-muted-foreground mb-8 leading-relaxed max-w-xl">
-              I build end-to-end Data Analytics solutions and Power BI Dashboards
-              to help track KPIs and drive key business decisions.
+              I build <em>end-to-end</em> Data Analytics solutions and Power BI Dashboards
+              that turn raw data into the clarity businesses need to move fast and decide smart.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -116,21 +116,21 @@ export function Hero() {
         <div className="grid grid-cols-3 gap-4 py-8 border-t">
           <div className="text-center">
             <p className="text-3xl md:text-4xl font-bold gradient-text">6+</p>
-            <p className="text-muted-foreground text-sm mt-1">Projects</p>
+            <p className="text-muted-foreground text-sm mt-1 italic">Projects</p>
           </div>
           <div className="text-center border-x">
             <p className="text-3xl md:text-4xl font-bold gradient-text">2+</p>
-            <p className="text-muted-foreground text-sm mt-1">Years Exp</p>
+            <p className="text-muted-foreground text-sm mt-1 italic">Years Exp</p>
           </div>
           <div className="text-center">
             <p className="text-3xl md:text-4xl font-bold gradient-text">100%</p>
-            <p className="text-muted-foreground text-sm mt-1">Client Satisfaction</p>
+            <p className="text-muted-foreground text-sm mt-1 italic">Client Satisfaction</p>
           </div>
         </div>
 
         {/* Scroll indicator */}
         <div className="flex flex-col items-center py-4 text-muted-foreground">
-          <span className="text-sm mb-2">Scroll to explore</span>
+          <span className="text-sm mb-2 italic">Scroll to explore</span>
           <ArrowDown className="h-4 w-4 animate-bounce" />
         </div>
       </div>

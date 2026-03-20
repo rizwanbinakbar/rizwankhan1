@@ -223,8 +223,8 @@ export function Projects() {
           <span className="section-label">Portfolio</span>
           <h2 className="text-4xl md:text-5xl font-bold mb-3 gradient-text">Featured Projects</h2>
           <div className="section-accent-line" />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5">
-            A selection of real-world data analytics and engineering projects.
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5 italic">
+            Real-world problems. Real data. Real impact.
           </p>
         </div>
 
