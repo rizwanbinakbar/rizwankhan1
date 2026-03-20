@@ -216,8 +216,10 @@ export function Education() {
 
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl font-bold mb-4">Education</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <span className="section-label">Background</span>
+          <h2 className="text-4xl font-bold mb-3 gradient-text">Education</h2>
+          <div className="section-accent-line" />
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5">
             Academic background and professional certifications.
           </p>
         </div>

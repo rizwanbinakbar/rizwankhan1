@@ -26,8 +26,10 @@ export function Experience() {
     <section className="py-24 px-4 bg-secondary/10">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <span className="section-label">Career</span>
+          <h2 className="text-4xl font-bold mb-3 gradient-text">Work Experience</h2>
+          <div className="section-accent-line" />
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5">
             My journey building solutions that matters.
           </p>
         </div>
