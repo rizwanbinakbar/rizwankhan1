@@ -43,7 +43,7 @@ export function Hero() {
                 asChild 
                 className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
               >
-                <a href="/Rizwan_Resume_DA.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="/Rizwan_DA_Resume.pdf" target="_blank" rel="noopener noreferrer">
                   <Download className="mr-2 h-4 w-4" />
                   View Resume
                 </a>
