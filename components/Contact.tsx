@@ -52,7 +52,7 @@ export function Contact() {
 
             <div>
               <p className="section-label">Contact</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Let&apos;s talk.</h2>
+              <h2 className="font-display mt-3 text-3xl tracking-tight sm:text-4xl">Let&apos;s talk.</h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
                 Open to data internships, junior data roles, and small client projects. Email or LinkedIn works best.
               </p>

@@ -33,17 +33,19 @@ export function Skills() {
           <p>A short view of the tools and work I am building around.</p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-xl border border-border bg-card">
           {capabilityGroups.map((group) => (
-            <article key={group.title} className="quiet-card">
-              <h3 className="text-lg font-semibold tracking-tight">{group.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{group.description}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {group.tools.map((tool) => (
-                  <Badge key={tool} variant="secondary">
-                    {tool}
-                  </Badge>
-                ))}
+            <article key={group.title} className="border-b border-border p-5 last:border-b-0 sm:grid sm:grid-cols-[220px_minmax(0,1fr)] sm:gap-6">
+              <h3 className="text-base font-semibold tracking-tight">{group.title}</h3>
+              <div>
+                <p className="mt-2 text-sm leading-7 text-muted-foreground sm:mt-0">{group.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {group.tools.map((tool) => (
+                    <Badge key={tool} variant="secondary">
+                      {tool}
+                    </Badge>
+                  ))}
+                </div>
               </div>
             </article>
           ))}

@@ -103,6 +103,12 @@
     text-rendering: geometricPrecision;
   }
 
+  h1,
+  h2 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    font-weight: 400;
+  }
+
   img,
   svg,
   video,
@@ -135,7 +141,7 @@
     margin-top: 0.55rem;
     max-width: 650px;
     font-size: clamp(1.9rem, 3.3vw, 3.05rem);
-    font-weight: 650;
+    font-weight: 400;
     line-height: 1.12;
     letter-spacing: 0;
     text-wrap: balance;
@@ -153,8 +159,19 @@
     color: var(--accent-orange);
     font-size: 0.78rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     text-transform: uppercase;
+  }
+
+  .font-display {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+    font-weight: 400;
+  }
+
+  .font-display em,
+  h1 em,
+  h2 em {
+    font-style: italic;
   }
 
   .quiet-card,

@@ -142,6 +142,21 @@ function SectionList({ title, items }: { title: string; items: ReactNode[] | str
   );
 }
 
+function ToolsList({ tools }: { tools: string[] }) {
+  return (
+    <section>
+      <h4 className="text-sm font-semibold uppercase tracking-wide text-foreground">Tools</h4>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {tools.map((tool) => (
+          <Badge key={tool} variant="secondary">
+            {tool}
+          </Badge>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ProjectModal({
   project,
   open,
@@ -158,7 +173,7 @@ function ProjectModal({
       <DialogContent className="max-h-[92vh] overflow-y-auto p-0 sm:max-w-3xl">
         <div className="p-5 sm:p-7">
           <DialogHeader>
-            <DialogTitle className="text-2xl leading-tight">{project.title}</DialogTitle>
+            <DialogTitle className="font-display text-3xl font-normal leading-tight">{project.title}</DialogTitle>
             <DialogDescription className="text-base leading-7">{project.summary}</DialogDescription>
           </DialogHeader>
 
@@ -168,17 +183,10 @@ function ProjectModal({
             </div>
           )}
 
-          <div className="mt-5 flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-
           <div className="mt-7 grid gap-6">
             <SectionList title="Problem" items={project.caseStudy.problem} />
             <SectionList title="What I built" items={project.caseStudy.built} />
+            <ToolsList tools={project.tags} />
             <SectionList title="Result" items={project.caseStudy.result} />
           </div>
 
