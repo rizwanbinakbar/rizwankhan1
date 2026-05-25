@@ -1,100 +1,58 @@
 import { useState } from "react";
 import { Badge } from "./ui/badge";
-import { Card, CardContent } from "./ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "./ui/dialog";
-import { ExternalLink, Award } from "lucide-react";
 import { Button } from "./ui/button";
-
-// ─── University Data ──────────────────────────────────────────────────────────
+import { Card, CardContent } from "./ui/card";
+import { Award, ExternalLink } from "lucide-react";
 
 const university = {
   name: "Emerson University Multan",
-  degree: "Bachelor of Science in Artificial Intelligence",
+  degree: "BS Artificial Intelligence",
   cgpa: "3.8/4.0",
-  period: "2024 – 2028",
+  period: "2024 - 2028",
   coursework: [
     "Data Structures & Algorithms",
     "Statistics & Probability",
-    "Computer Organization & Assembly Language",
+    "Computer Organization",
     "Software Engineering",
-  ],
-  activities: [
-    "AI-Club",
-    "EUM Book Club",
   ],
 };
 
-// ─── Certifications Data ──────────────────────────────────────────────────────
-
-interface Certification {
-  name: string;
-  date: string;
-  logo: string;
-  issuer?: string;
-  credentialUrl?: string;
-}
-
-const certifications: Certification[] = [
+const certifications = [
   {
-    name: "Data Engineering Certificate",
-    date: "2027",
-    logo: "DE-Foundation-Cert.png",
+    name: "Data Engineering Foundations",
+    status: "Completed",
+    logo: "/DE-Foundation-Cert.png",
     issuer: "IBM",
-    credentialUrl:
-      "https://coursera.org/verify/specialization/JNTWD3LU47K3",
+    credentialUrl: "https://coursera.org/verify/specialization/JNTWD3LU47K3",
   },
   {
-    name: "Python for DE & AI",
-    date: "2027",
+    name: "Python for Data Engineering & AI",
+    status: "Completed",
     logo: "/Python-For-DE-and-AI.png",
     issuer: "IBM",
-    credentialUrl:
-      "https://coursera.org/verify/U3RPULUZXVDT",
+    credentialUrl: "https://coursera.org/verify/U3RPULUZXVDT",
   },
   {
-    name: "LUMS (ilmx) AI Professional",
-    date: "2028",
+    name: "AI for Professionals",
+    status: "Completed",
     logo: "/LUMS-(ilmx)-AI-4-professionals.png",
     issuer: "LUMS (ilmx)",
-    credentialUrl: "https://aws.amazon.com/certification/certified-cloud-practitioner/",
   },
   {
     name: "SQL Intermediate",
-    date: "2027",
+    status: "Completed",
     logo: "/SQL-Inter-HackerRank.png",
-    issuer: "HacerRank",
-    credentialUrl:
-      "https://learn.microsoft.com/en-us/credentials/certifications/azure-data-fundamentals/",
+    issuer: "HackerRank",
   },
 ];
 
-// ─── Cert Logo with fallback ──────────────────────────────────────────────────
-
-function CertLogo({
-  src,
-  alt,
-  size = 48,
-}: {
-  src: string;
-  alt: string;
-  size?: number;
-}) {
+function CertLogo({ src, alt }: { src: string; alt: string }) {
   const [errored, setErrored] = useState(false);
-  const px = `${size}px`;
 
   if (errored) {
     return (
-      <div
-        className="flex items-center justify-center rounded bg-secondary text-muted-foreground shrink-0"
-        style={{ width: px, height: px }}
-      >
-        <Award style={{ width: size * 0.6, height: size * 0.6 }} />
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-border bg-secondary text-muted-foreground">
+        <Award className="h-5 w-5" />
       </div>
     );
   }
@@ -104,190 +62,87 @@ function CertLogo({
       src={src}
       alt={alt}
       onError={() => setErrored(true)}
-      className="rounded object-contain shrink-0"
-      style={{ width: px, height: px }}
+      className="h-12 w-12 shrink-0 rounded-xl border border-border bg-white object-contain p-1"
     />
   );
 }
 
-// ─── Certification Card ───────────────────────────────────────────────────────
-
-function CertificationCard({
-  cert,
-  onClick,
-}: {
-  cert: Certification;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
-      aria-label={`View details for ${cert.name}`}
-    >
-      <Card className="border bg-card hover:shadow-md hover:border-primary/40 transition-all duration-200 cursor-pointer">
-        <CardContent className="p-4 flex items-center gap-4">
-          <CertLogo src={cert.logo} alt={`${cert.issuer ?? cert.name} logo`} size={48} />
-          <div className="flex-1 min-w-0">
-            <p className="font-medium text-sm leading-snug line-clamp-2">{cert.name}</p>
-            {cert.issuer && (
-              <p className="text-xs text-muted-foreground mt-0.5">{cert.issuer}</p>
-            )}
-            <p className="text-xs text-muted-foreground mt-0.5">{cert.date}</p>
-          </div>
-        </CardContent>
-      </Card>
-    </button>
-  );
-}
-
-// ─── Certification Modal ──────────────────────────────────────────────────────
-
-function CertificationModal({
-  cert,
-  open,
-  onClose,
-}: {
-  cert: Certification | null;
-  open: boolean;
-  onClose: () => void;
-}) {
-  if (!cert) return null;
-
-  return (
-    <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="sm:max-w-2xl">
-        <DialogHeader>
-          <div className="flex items-start gap-4">
-            <CertLogo
-              src={cert.logo}
-              alt={`${cert.issuer ?? cert.name} logo`}
-              size={56}
-            />
-            <div>
-              <DialogTitle className="text-lg leading-snug">{cert.name}</DialogTitle>
-              {cert.issuer && (
-                <DialogDescription className="mt-1">{cert.issuer}</DialogDescription>
-              )}
-              <p className="text-sm text-muted-foreground mt-0.5">{cert.date}</p>
-            </div>
-          </div>
-        </DialogHeader>
-
-        <div className="flex flex-col items-center gap-4 py-6">
-          <CertLogo
-            src={cert.logo}
-            alt={`${cert.issuer ?? cert.name} logo`}
-            size={96}
-          />
-          <div className="text-center">
-            <p className="font-semibold text-base">{cert.name}</p>
-            {cert.issuer && (
-              <p className="text-muted-foreground text-sm mt-1">{cert.issuer}</p>
-            )}
-            <p className="text-muted-foreground text-sm mt-0.5">{cert.date}</p>
-          </div>
-          {cert.credentialUrl && (
-            <Button size="sm" asChild>
-              <a
-                href={cert.credentialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="mr-1.5 h-4 w-4" />
-                View Credential
-              </a>
-            </Button>
-          )}
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
-// ─── Education Section ────────────────────────────────────────────────────────
-
 export function Education() {
-  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
-
   return (
-    <section className="py-24 px-4 bg-secondary/10">
-      <div className="max-w-4xl mx-auto">
-
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="section-label">Background</span>
-          <h2 className="text-4xl font-bold mb-3 gradient-text">Education</h2>
-          <div className="section-accent-line" />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5 italic">
-            Where curiosity meets credentials — always learning, always growing.
+    <div className="section-shell bg-section-light px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="section-heading">
+          <p className="section-kicker">Education</p>
+          <h2>Academic background and focused credentials.</h2>
+          <p>
+            Education supports the work rather than taking over the page: AI coursework, statistics, programming, and
+            practical data certifications.
           </p>
         </div>
 
-        {/* University */}
-        <div className="relative border-l border-border pl-8 mb-16 animate-fade-in-up">
-          <span className="absolute -left-[0.625rem] top-[5px] flex h-5 w-5 items-center justify-center rounded-full bg-[#2c4c9c] ring-4 ring-background" />
+        <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
+          <Card className="premium-card">
+            <CardContent className="p-6 sm:p-7">
+              <p className="section-kicker">University</p>
+              <h3 className="mt-3 text-2xl font-semibold tracking-tight">{university.name}</h3>
+              <p className="mt-2 text-base text-muted-foreground">{university.degree}</p>
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                <div className="rounded-2xl border border-border bg-secondary/45 p-4">
+                  <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Period</p>
+                  <p className="mt-2 font-medium">{university.period}</p>
+                </div>
+                <div className="rounded-2xl border border-border bg-secondary/45 p-4">
+                  <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">CGPA</p>
+                  <p className="mt-2 font-medium">{university.cgpa}</p>
+                </div>
+              </div>
+              <div className="mt-6">
+                <p className="mb-3 text-sm font-semibold">Relevant coursework</p>
+                <div className="flex flex-wrap gap-2">
+                  {university.coursework.map((course) => (
+                    <Badge key={course} variant="secondary">
+                      {course}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-          <div className="mb-1 flex flex-wrap items-center gap-3">
-            <h3 className="font-semibold text-xl">{university.name}</h3>
-          </div>
-          {university.degree && (
-            <p className="text-muted-foreground font-medium mb-1">{university.degree}</p>
-          )}
-          <p className="text-sm text-muted-foreground mb-1">
-            {university.period}
-          </p>
-          <p className="text-sm text-muted-foreground mb-4">
-            CGPA: <span className="font-medium text-foreground">{university.cgpa}</span>
-          </p>
+          <Card className="premium-card">
+            <CardContent className="p-6 sm:p-7">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="section-kicker">Certifications</p>
+                  <h3 className="mt-3 text-2xl font-semibold tracking-tight">Compact proof of continued learning.</h3>
+                </div>
+              </div>
 
-          {/* Relevant Coursework */}
-          <div className="mb-4">
-            <p className="text-sm font-semibold mb-2">Relevant Coursework</p>
-            <div className="flex flex-wrap gap-2">
-              {university.coursework.map((course) => (
-                <Badge key={course} variant="secondary">
-                  {course}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {/* Activities & Societies */}
-          <div>
-            <p className="text-sm font-semibold mb-2">Activities &amp; Societies</p>
-            <div className="flex flex-wrap gap-2">
-              {university.activities.map((activity) => (
-                <Badge key={activity} variant="outline">
-                  {activity}
-                </Badge>
-              ))}
-            </div>
-          </div>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {certifications.map((cert) => (
+                  <div key={cert.name} className="rounded-2xl border border-border bg-secondary/35 p-4">
+                    <div className="flex gap-4">
+                      <CertLogo src={cert.logo} alt={`${cert.issuer} certificate preview`} />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold leading-6">{cert.name}</p>
+                        <p className="text-xs text-muted-foreground">{cert.issuer} - {cert.status}</p>
+                        {cert.credentialUrl && (
+                          <Button variant="link" size="sm" asChild className="mt-2 h-auto p-0 text-accent-blue">
+                            <a href={cert.credentialUrl} target="_blank" rel="noreferrer">
+                              View credential
+                              <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
-
-        {/* Certifications */}
-        <div className="animate-fade-in-up">
-          <h3 className="text-2xl font-semibold mb-6">Certifications</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {certifications.map((cert) => (
-              <CertificationCard
-                key={cert.name}
-                cert={cert}
-                onClick={() => setSelectedCert(cert)}
-              />
-            ))}
-          </div>
-        </div>
-
       </div>
-
-      {/* Certification Modal */}
-      <CertificationModal
-        cert={selectedCert}
-        open={selectedCert !== null}
-        onClose={() => setSelectedCert(null)}
-      />
-    </section>
+    </div>
   );
 }

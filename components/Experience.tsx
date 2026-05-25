@@ -1,67 +1,86 @@
 import { Badge } from "./ui/badge";
+import { Card, CardContent } from "./ui/card";
 
 const experiences = [
   {
     role: "Data Analyst",
     company: "HashTurn",
-    period: "2024 – Present",
+    period: "2024 - Present",
     location: "Pakistan",
-    description:
-      "Built end-to-end ETL pipelines, designed Medallion Architecture data models, and developed Power BI dashboards, improving data reliability, freshness, and reporting efficiency by 30–35%, while presenting insights to international stakeholders to accelerate decisions by 20%.",
-    tags: ["SQL", "Power BI", "Python", "AWS", "PySpark"],
+    summary:
+      "Work on reporting and data workflow tasks across SQL, Power BI, Python, and cloud-connected data sources.",
+    details: [
+      "Build dashboard views and reporting datasets for business and stakeholder review.",
+      "Support ETL and data modeling work, including layered data preparation and data quality checks.",
+      "Translate technical analysis into clearer reporting notes for non-technical stakeholders.",
+    ],
+    tools: ["SQL", "Power BI", "Python", "AWS", "PySpark"],
   },
   {
-    role: "Freelance Power BI Developer",
-    company: "Self-Employed",
-    period: "2024 – Present",
+    role: "Independent Data Projects",
+    company: "Client and portfolio work",
+    period: "2024 - Present",
     location: "Remote",
-    description:
-      "Delivered insight-driven presentations to international clients, accelerating decision-making and improving stakeholder clarity by 20% (based on PM feedback).",
-    tags: ["Power BI", "SQL", "Python", "Azure", "PySpark"],
-  }
+    summary:
+      "Deliver focused analytics projects for dashboards, reporting workflows, and SQL-based data preparation.",
+    details: [
+      "Create Power BI dashboards from messy spreadsheets, SQL datasets, and client-provided reporting requirements.",
+      "Prepare reusable transformations, measures, and views so reports can be maintained after delivery.",
+      "Document assumptions and workflow steps so clients understand how the reporting system works.",
+    ],
+    tools: ["Power BI", "SQL", "Python", "Power Query", "GitHub"],
+  },
 ];
 
 export function Experience() {
   return (
-    <section className="py-24 px-4 bg-secondary/10">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="section-label">Career</span>
-          <h2 className="text-4xl font-bold mb-3 gradient-text">Work Experience</h2>
-          <div className="section-accent-line" />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5 italic">
-            Turning messy data into clear decisions — one pipeline at a time.
+    <div className="section-shell bg-section-dark px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div className="mx-auto max-w-5xl">
+        <div className="section-heading">
+          <p className="section-kicker">Experience</p>
+          <h2>Grounded data work with dashboards, workflows, and client context.</h2>
+          <p>
+            My experience is early-career and practical: build the reporting layer, make the data easier to trust, and
+            explain the output without hiding behind jargon.
           </p>
         </div>
 
-        <div className="relative border-l border-border pl-8 space-y-12">
-          {experiences.map((exp, index) => (
-            <div key={index} className="relative animate-fade-in-up">
-              {/* CIRCLE COLOR UPDATED TO NAVY BLUE BELOW */}
-              <span className="absolute -left-[2.6rem] flex h-5 w-5 items-center justify-center rounded-full bg-[#2c4c9c] ring-4 ring-background" />
-              
-              <div className="mb-1 flex flex-wrap items-center gap-3">
-                <h3 className="font-semibold text-xl">{exp.role}</h3>
-                <span className="text-muted-foreground">·</span>
-                <span className="text-primary/80 font-medium italic">{exp.company}</span>
-              </div>
-              <p className="text-sm text-muted-foreground mb-3">
-                {exp.period} · {exp.location}
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                {exp.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {exp.tags.map((tag) => (
-                  <Badge key={tag} variant="outline">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </div>
+        <div className="space-y-5">
+          {experiences.map((experience) => (
+            <Card key={`${experience.role}-${experience.company}`} className="premium-card">
+              <CardContent className="p-6 sm:p-7">
+                <div className="grid gap-5 md:grid-cols-[0.78fr_1.22fr]">
+                  <div>
+                    <p className="text-sm text-muted-foreground">{experience.period}</p>
+                    <h3 className="mt-2 text-2xl font-semibold tracking-tight">{experience.role}</h3>
+                    <p className="mt-1 font-medium text-accent-blue">{experience.company}</p>
+                    <p className="mt-3 text-sm text-muted-foreground">{experience.location}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {experience.tools.map((tool) => (
+                        <Badge key={tool} variant="outline">
+                          {tool}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-base leading-7 text-foreground">{experience.summary}</p>
+                    <ul className="mt-5 space-y-3 text-sm leading-6 text-muted-foreground">
+                      {experience.details.map((detail) => (
+                        <li key={detail} className="flex gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-blue" />
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

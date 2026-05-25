@@ -10,78 +10,66 @@ import { Education } from "./components/Education";
 import { ThemeProvider } from "./components/theme-provider";
 import { ThemeToggle } from "./components/theme-toggle";
 
+const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Education", href: "#education" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" }
-  ];
-
   return (
-    <ThemeProvider defaultTheme="system" storageKey="portfolio-theme" attribute="class" enableSystem>
-      <div className="relative min-h-screen portfolio-bg transition-colors duration-300">
-        {/* Decorative ambient blobs – fixed so they span the whole page */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
-          <div className="animate-blob blob-delay-1 absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[100px]" />
-          <div className="animate-blob blob-delay-2 absolute top-1/2 -right-40 w-[420px] h-[420px] rounded-full bg-primary/10 blur-[100px]" />
-          <div className="animate-blob blob-delay-3 absolute -bottom-32 left-1/3 w-[380px] h-[380px] rounded-full bg-primary/10 blur-[100px]" />
-        </div>
-        {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <div className="shrink-0">
-                <h3 className="tracking-tight gradient-text font-bold">Rizwan Khan</h3>
-              </div>
-              
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center space-x-4">
-                <div className="flex items-baseline space-x-4">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </div>
-                <ThemeToggle />
-              </div>
+    <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme" attribute="class" enableSystem>
+      <div className="min-h-screen overflow-x-hidden bg-background text-foreground antialiased">
+        <nav className="fixed left-0 right-0 top-0 z-50 border-b border-border/70 bg-background/82 backdrop-blur-xl">
+          <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <a
+              href="#home"
+              className="link-focus rounded-md text-sm font-semibold tracking-tight text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Rizwan Khan
+            </a>
 
-              {/* Mobile menu section */}
-              <div className="md:hidden flex items-center space-x-2">
-                <ThemeToggle />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            <div className="hidden items-center gap-1 md:flex">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="link-focus rounded-full px-3 py-2 text-sm text-muted-foreground transition hover:bg-secondary/70 hover:text-foreground"
                 >
-                  {mobileMenuOpen ? (
-                    <X className="h-6 w-6" />
-                  ) : (
-                    <Menu className="h-6 w-6" />
-                  )}
-                </Button>
-              </div>
+                  {item.label}
+                </a>
+              ))}
+              <ThemeToggle />
+            </div>
+
+            <div className="flex items-center gap-2 md:hidden">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setMobileMenuOpen((open) => !open)}
+                aria-label="Toggle navigation menu"
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
             </div>
           </div>
 
-          {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background border-t">
+            <div className="border-t border-border/70 bg-background/95 px-4 py-3 shadow-lg md:hidden">
+              <div className="mx-auto grid max-w-7xl gap-1">
                 {navItems.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="text-muted-foreground hover:text-foreground block px-3 py-2 text-base transition-colors"
+                    className="link-focus rounded-lg px-3 py-3 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -92,38 +80,32 @@ export default function App() {
           )}
         </nav>
 
-        {/* Main Content */}
-        <main className="relative z-10">
-          <div id="home">
+        <main>
+          <section id="home" className="scroll-mt-20">
             <Hero />
-          </div>
-          <div id="skills">
-            <Skills />
-          </div>
-          <div id="experience">
-            <Experience />
-          </div>
-          <div id="education">
-            <Education />
-          </div>
-          <div id="projects">
+          </section>
+          <section id="projects" className="scroll-mt-20">
             <Projects />
-          </div>
-          <div id="contact">
+          </section>
+          <section id="skills" className="scroll-mt-20">
+            <Skills />
+          </section>
+          <section id="experience" className="scroll-mt-20">
+            <Experience />
+          </section>
+          <section id="education" className="scroll-mt-20">
+            <Education />
+          </section>
+          <section id="contact" className="scroll-mt-20">
             <Contact />
-          </div>
+          </section>
         </main>
 
-        {/* Footer */}
-        <footer className="relative z-10 bg-secondary/10 py-12 px-4 border-t">
-          <div className="max-w-4xl mx-auto text-center">
-            <h3 className="mb-2 gradient-text font-bold">Rizwan Khan</h3>
-            <p className="text-primary/70 mb-6 italic">
-              Data Analyst | Power BI Developer | ETL & Cloud
-            </p>
-            <p className="text-sm text-muted-foreground">
-              © 2026 Rizwan Khan. All rights reserved.
-            </p>
+        <footer className="border-t border-border/70 bg-background px-4 py-10">
+          <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <p className="font-medium text-foreground">Rizwan Khan</p>
+            <p>AI/Data Engineering student building analytics systems that people can use.</p>
+            <p>(c) 2026</p>
           </div>
         </footer>
       </div>

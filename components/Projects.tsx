@@ -1,126 +1,146 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
-import { Github, ExternalLink, LayoutDashboard, Eye } from "lucide-react";
+import { ExternalLink, Github, LayoutDashboard, Search } from "lucide-react";
 
 interface Project {
   title: string;
+  eyebrow: string;
   description: string;
+  problem: string;
+  role: string;
   tags: string[];
-  github: string;
+  github?: string;
   live?: string;
   image?: string;
   imageColor: string;
   caseStudy: {
     problem: string[];
     solution: string[];
-    outcome: JSX.Element[];
+    impact: ReactNode[];
   };
 }
 
 const projects: Project[] = [
   {
     title: "Athlete Performance Tracking Dashboard",
-    description:
-      "Used by a fitness coach managing 45 athletes to track and share athlete progress",
-    tags: ["Power BI", "SharePoint", "Data Visualization", "Data Modeling", "ETL"],
-    github:
-      "https://github.com/rizwanbinakbar/Athlete-Performance-Tracking-Dashboard",
-    live:
-      "https://rizwanbinakbar.notion.site/r?p=31540e4cba6880b6a069ed93d0489cb1&pm=c",
+    eyebrow: "Power BI case study",
+    description: "A reporting system for a fitness coach managing athlete progress across training phases.",
+    problem: "Manual tracking made it hard to see progress trends, prepare reports, and communicate performance clearly.",
+    role: "Designed the dashboard model, Power BI report, SharePoint-connected workflow, DAX measures, and reporting views.",
+    tags: ["Power BI", "SharePoint", "DAX", "ETL", "Data Modeling"],
+    github: "https://github.com/rizwanbinakbar/Athlete-Performance-Tracking-Dashboard",
+    live: "https://rizwanbinakbar.notion.site/r?p=31540e4cba6880b6a069ed93d0489cb1&pm=c",
     image: "/FitnessDashboard1.png",
-    imageColor: "from-blue-900 to-blue-700",
+    imageColor: "from-slate-900 to-blue-900",
     caseStudy: {
       problem: [
-        "Tracking progress for 45 athletes was done manually with no centralized reporting system.",
-        "Athlete performance trends (1RM, mobility, training phase progress) were not visible over time.",
-        "Manual monthly reporting would require ~8 hours/week and made it difficult to justify premium coaching packages."
+        "Tracking progress for 45 athletes was handled manually with no centralized reporting layer.",
+        "Strength, mobility, and phase progress were difficult to compare over time.",
+        "Monthly reporting required repeated manual analysis before the coach could share updates.",
       ],
       solution: [
-        "Built an automated Power BI dashboard connected to SharePoint to centralize athlete performance data.",
-        "Developed ETL transformations and 17 DAX measures to calculate 1RM progression, mobility scores, and phase comparisons.",
-        "Implemented interactive filters and automated monthly reporting to eliminate manual analysis."
+        "Built a Power BI dashboard connected to SharePoint to centralize athlete performance data.",
+        "Created ETL transformations and 17 DAX measures for 1RM progression, mobility scores, and phase comparisons.",
+        "Designed interactive filters and reporting pages so the coach could review athlete-level and group-level progress.",
       ],
-      outcome: [
-        <>Reduced reporting workload by <span className="font-bold text-green-600">~8 hours/week</span> through automated dashboards.</>,
-        <>Enabled real-time tracking of 45 athletes, improving coaching decisions and performance monitoring.</>,
-        <>Data-driven progress reports improved athlete communication and helped increase client retention (~20%).</>,
+      impact: [
+        <>Reduced recurring reporting work by roughly 8 hours per week based on the project workflow.</>,
+        <>Gave the coach a cleaner way to monitor 45 athletes and explain progress to clients.</>,
+        <>Improved the quality and consistency of monthly performance communication.</>,
       ],
     },
   },
-
   {
-    title: "SQL Data Warehouse",
-    description:
-      "Developed a layered data warehouse using Medallion Architecture with optimized analytical queries.",
-    tags: ["SQL", "ETL", "Medallion Architecture", "MySQL"],
+    title: "SQL Data Warehouse / Medallion Architecture",
+    eyebrow: "Data engineering project",
+    description: "A layered SQL warehouse that converts messy source data into reporting-ready analytical views.",
+    problem: "Raw data arrived with inconsistent schemas, duplicates, missing values, and no reliable analytical layer.",
+    role: "Designed Bronze, Silver, and Gold layers, wrote transformation SQL, and prepared optimized reporting views.",
+    tags: ["SQL", "MySQL", "ETL", "Data Warehouse", "Medallion Architecture"],
     github: "https://github.com/rizwanbinakbar/Sql-Data-warehouse-Project",
-    live:
-      "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881ed90f1e1b2dba3947c&pm=c",
+    live: "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881ed90f1e1b2dba3947c&pm=c",
     image: "/data_architecture.png",
-    imageColor: "from-purple-900 to-purple-700",
+    imageColor: "from-slate-900 to-indigo-900",
     caseStudy: {
       problem: [
         "Data arrived from multiple sources with inconsistent formats, duplicates, and missing values.",
-        "Analysts spent hours manually cleaning data.",
-        "No centralized analytical dataset existed."
+        "Analytical queries depended on repeated manual cleaning before reporting could start.",
+        "There was no central dataset designed for repeatable BI or analytics work.",
       ],
       solution: [
-        "Designed a Medallion Architecture warehouse (Bronze, Silver, Gold) in MySQL.",
-        "Built ETL pipelines to standardize schemas, remove duplicates, and handle missing values.",
-        "Created optimized SQL views and indexed analytical tables for reporting queries."
+        "Designed a Medallion Architecture warehouse in MySQL with Bronze, Silver, and Gold layers.",
+        "Built ETL transformations to standardize schemas, remove duplicates, and handle missing values.",
+        "Created optimized SQL views and indexed analytical tables for downstream reporting queries.",
       ],
-      outcome: [
-        <>Improved query performance from ~30s to~1s.</>,
-        <>Eliminated manual preprocessing and <span className="font-bold text-green-600">saved ~12 hours/week</span> of analyst time.</>,
-        <>Established a reliable single source of truth for downstream analytics.</>,
+      impact: [
+        <>Improved selected reporting queries from roughly 30 seconds to around 1 second in the project environment.</>,
+        <>Reduced repeated preprocessing work by preparing reusable clean layers.</>,
+        <>Created a clearer source of truth for analytics and dashboard development.</>,
       ],
     },
   },
-
   {
     title: "HR Analytics Dashboard",
-    description:
-      "Power BI dashboard analyzing employee performance, attrition, and workforce demographics.",
-    tags: ["Python", "SQL", "Power BI", "ETL", "Power Query"],
+    eyebrow: "Analytics dashboard",
+    description: "A Power BI dashboard for understanding attrition, workforce demographics, and performance patterns.",
+    problem: "HR reporting was scattered across files, making it difficult to identify attrition patterns and explain trends.",
+    role: "Prepared datasets, modeled KPIs, built DAX measures, and designed Power BI views for HR analysis.",
+    tags: ["Power BI", "SQL", "Python", "Power Query", "DAX"],
     github: "https://github.com/rizwanbinakbar/HR-Analytics-Dashboard",
-    live:
-      "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881828107f31847dcbceb&pm=c",
+    live: "https://rizwanbinakbar.notion.site/r?p=2bd40e4cba6881828107f31847dcbceb&pm=c",
     image: "/Summary-Dashboard.png",
-    imageColor: "from-emerald-900 to-emerald-700",
+    imageColor: "from-slate-900 to-emerald-900",
     caseStudy: {
       problem: [
-        "HR lacked visibility into attrition trends, performance distribution, and workforce demographics.",
-        "Employee turnover was increasing but the root causes were unclear.",
-        "Quarterly reporting required manual PowerPoint preparation and data aggregation."
+        "HR lacked a single place to inspect attrition trends, performance distribution, and workforce demographics.",
+        "Turnover was increasing, but the likely segments and drivers were not easy to isolate.",
+        "Quarterly reporting required manual aggregation before insights could be presented.",
       ],
       solution: [
-        "Developed a Power BI HR analytics dashboard integrating SQL datasets with Power Query transformations.",
-        "Used Python preprocessing scripts and DAX measures to calculate attrition rates, tenure metrics, and performance KPIs.",
-        "Built interactive dashboards for workforce demographics, performance analysis, and retention insights."
+        "Developed a Power BI dashboard that combines SQL datasets with Power Query transformations.",
+        "Used Python preprocessing and DAX measures for attrition, tenure, demographics, and performance KPIs.",
+        "Built interactive pages for workforce overview, performance analysis, and retention exploration.",
       ],
-      outcome: [
-        <>Identified a high-risk attrition segment (mid-level Sales employees with below-average compensation).</>,
-        <>Enabled targeted retention strategies based on department and tenure analytics.</>,
-        <>Replaced manual reporting workflows and <span className="font-bold text-green-600">saved ~ 6 hours</span> per quarterly reporting cycle.</>,
+      impact: [
+        <>Identified a high-risk attrition segment in the sample HR dataset.</>,
+        <>Made department, tenure, compensation, and performance patterns easier to compare.</>,
+        <>Reduced manual reporting work by turning repeated analysis into reusable dashboard views.</>,
       ],
     },
   },
 ];
+
+function ProjectLinks({ project, compact = false }: { project: Project; compact?: boolean }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {project.github && (
+        <Button variant="outline" size={compact ? "sm" : "default"} asChild>
+          <a href={project.github} target="_blank" rel="noreferrer">
+            <Github className="mr-2 h-4 w-4" />
+            Code
+          </a>
+        </Button>
+      )}
+      {project.live && (
+        <Button size={compact ? "sm" : "default"} asChild>
+          <a href={project.live} target="_blank" rel="noreferrer">
+            <ExternalLink className="mr-2 h-4 w-4" />
+            Details
+          </a>
+        </Button>
+      )}
+    </div>
+  );
+}
 
 function ProjectModal({
   project,
@@ -135,75 +155,74 @@ function ProjectModal({
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-xl">{project.title}</DialogTitle>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        </DialogHeader>
-
-        {project.image && (
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full rounded-md object-cover max-h-52"
-          />
-        )}
-
-        <div className="space-y-5 mt-2">
-          <div>
-            <h4 className="font-semibold mb-2">Problem</h4>
-            <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
-              {project.caseStudy.problem.map((item, i) => (
-                <li key={i}>{item}</li>
+      <DialogContent className="max-h-[92vh] overflow-y-auto p-0 sm:max-w-4xl">
+        <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="bg-secondary/50 p-4 sm:p-6">
+            <div className="overflow-hidden rounded-2xl border border-border bg-background">
+              {project.image ? (
+                <img src={project.image} alt={`${project.title} screenshot`} className="h-full max-h-[420px] w-full object-cover" />
+              ) : (
+                <div className={`flex aspect-[4/3] items-center justify-center bg-gradient-to-br ${project.imageColor}`}>
+                  <LayoutDashboard className="h-16 w-16 text-white/45" />
+                </div>
+              )}
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <Badge key={tag} variant="secondary">
+                  {tag}
+                </Badge>
               ))}
-            </ul>
+            </div>
           </div>
 
-          <div>
-            <h4 className="font-semibold mb-2">Solution</h4>
-            <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
-              {project.caseStudy.solution.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
+          <div className="p-5 sm:p-7">
+            <DialogHeader>
+              <p className="section-kicker">{project.eyebrow}</p>
+              <DialogTitle className="text-2xl leading-tight sm:text-3xl">{project.title}</DialogTitle>
+              <DialogDescription className="text-base leading-7">{project.description}</DialogDescription>
+            </DialogHeader>
+
+            <div className="mt-7 grid gap-6">
+              <div>
+                <h4 className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-foreground">Problem</h4>
+                <ul className="space-y-2 text-sm leading-6 text-muted-foreground">
+                  {project.caseStudy.problem.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-blue" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-foreground">Solution</h4>
+                <ul className="space-y-2 text-sm leading-6 text-muted-foreground">
+                  {project.caseStudy.solution.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-blue" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-foreground">Impact</h4>
+                <ul className="space-y-2 text-sm leading-6 text-muted-foreground">
+                  {project.caseStudy.impact.map((item, index) => (
+                    <li key={index} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-blue" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <ProjectLinks project={project} compact />
+            </div>
           </div>
-
-          <div>
-            <h4 className="font-semibold mb-2">Outcome</h4>
-            <ul className="list-disc pl-5 space-y-1 text-muted-foreground text-sm">
-              {project.caseStudy.outcome.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="flex gap-3 mt-4">
-          <Button variant="outline" size="sm" asChild>
-            <a href={project.github} target="_blank" rel="noreferrer">
-              <Github className="mr-1.5 h-4 w-4" />
-              Code
-            </a>
-          </Button>
-
-          {project.live && (
-            <Button 
-              size="sm" 
-              asChild 
-              className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
-            >
-              <a href={project.live} target="_blank" rel="noreferrer">
-                <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
-                Demo
-              </a>
-            </Button>
-          )}
         </div>
       </DialogContent>
     </Dialog>
@@ -212,173 +231,128 @@ function ProjectModal({
 
 export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const featured = projects[0];
-  const rest = projects.slice(1);
+  const [featured, ...rest] = projects;
 
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="section-label">Portfolio</span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-3 gradient-text">Featured Projects</h2>
-          <div className="section-accent-line" />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5 italic">
-            Real-world problems. Real data. Real impact.
+    <div className="section-shell bg-section-dark px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="section-heading">
+          <p className="section-kicker">Selected Work</p>
+          <h2>Case studies with real data work behind them.</h2>
+          <p>
+            These projects show how I think through reporting problems: define the messy data issue, build a reliable
+            workflow, and turn the output into something a stakeholder can actually read.
           </p>
         </div>
 
-        <div className="space-y-6">
-          {/* Featured first project — full-width horizontal card */}
-          <Card
-            className="cursor-pointer overflow-hidden card-lift group border-2 hover:border-primary/50 transition-all duration-300"
-            onClick={() => setSelectedProject(featured)}
-          >
-            <div className="flex flex-col lg:flex-row">
-              {/* Image side */}
-              <div className="relative lg:w-1/2 h-64 lg:h-80 overflow-hidden shrink-0">
-                {featured.image ? (
-                  <>
-                    <img
-                      src={featured.image}
-                      alt={featured.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="flex items-center gap-2 text-white font-semibold text-base">
-                        <Eye className="h-5 w-5" />
-                        <span>View Case Study</span>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className={`w-full h-full bg-gradient-to-br ${featured.imageColor} flex items-center justify-center`}>
-                    <LayoutDashboard className="h-16 w-16 text-white/30" />
-                  </div>
-                )}
-                <Badge className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1">
-                  ★ Featured
-                </Badge>
-              </div>
-
-              {/* Content side */}
-              <div className="lg:w-1/2 flex flex-col justify-between p-6 lg:p-8">
-                <div>
-                  <CardHeader className="p-0 mb-4">
-                    <CardTitle className="text-2xl mb-2">{featured.title}</CardTitle>
-                    <CardDescription className="text-base leading-relaxed">{featured.description}</CardDescription>
-                  </CardHeader>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {featured.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">{tag}</Badge>
-                    ))}
-                  </div>
-                  <p className="text-sm text-primary font-medium flex items-center gap-1.5 mt-4">
-                    <Eye className="h-3.5 w-3.5" />
-                    Click to view full case study
-                  </p>
+        <Card className="premium-card overflow-hidden">
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+            <button
+              type="button"
+              onClick={() => setSelectedProject(featured)}
+              className="group relative min-h-[280px] overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label={`Open case study for ${featured.title}`}
+            >
+              {featured.image ? (
+                <img
+                  src={featured.image}
+                  alt={`${featured.title} screenshot`}
+                  className="h-full min-h-[280px] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                />
+              ) : (
+                <div className={`flex h-full min-h-[280px] items-center justify-center bg-gradient-to-br ${featured.imageColor}`}>
+                  <LayoutDashboard className="h-16 w-16 text-white/45" />
                 </div>
-                <div className="flex gap-3 mt-6">
-                  <Button variant="outline" size="sm" asChild onClick={(e) => e.stopPropagation()}>
-                    <a href={featured.github} target="_blank" rel="noreferrer">
-                      <Github className="mr-1.5 h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                  {featured.live && (
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <a href={featured.live} target="_blank" rel="noreferrer">
-                        <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
-                        Live Demo
-                      </a>
-                    </Button>
-                  )}
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-3 text-white">
+                <span className="rounded-full bg-white/16 px-3 py-1 text-xs font-medium backdrop-blur">Featured case study</span>
+                <span className="inline-flex items-center gap-2 text-sm font-medium">
+                  <Search className="h-4 w-4" />
+                  Open
+                </span>
+              </div>
+            </button>
+
+            <CardContent className="flex flex-col justify-between p-6 sm:p-8">
+              <div>
+                <p className="section-kicker">{featured.eyebrow}</p>
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{featured.title}</h3>
+                <p className="mt-4 text-base leading-7 text-muted-foreground">{featured.description}</p>
+                <div className="mt-5 rounded-2xl border border-border/80 bg-secondary/40 p-4">
+                  <p className="text-sm font-semibold text-foreground">Problem solved</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{featured.problem}</p>
+                </div>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {featured.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
                 </div>
               </div>
-            </div>
-          </Card>
-
-          {/* Remaining project cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {rest.map((project) => (
-              <Card
-                key={project.title}
-                className="cursor-pointer overflow-hidden card-lift group border hover:border-primary/50 transition-all duration-300"
-                onClick={() => setSelectedProject(project)}
-              >
-                {/* Image with overlay */}
-                <div className="relative w-full h-56 overflow-hidden">
-                  {project.image ? (
-                    <>
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="flex items-center gap-2 text-white font-semibold">
-                          <Eye className="h-5 w-5" />
-                          <span>View Case Study</span>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <div className={`w-full h-full bg-gradient-to-br ${project.imageColor} flex items-center justify-center`}>
-                      <LayoutDashboard className="h-16 w-16 text-white/30" />
-                    </div>
-                  )}
-                </div>
-
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">{tag}</Badge>
-                    ))}
-                  </div>
-                </CardContent>
-
-                <CardFooter className="gap-3">
-                  <Button variant="outline" size="sm" asChild onClick={(e) => e.stopPropagation()}>
-                    <a href={project.github} target="_blank" rel="noreferrer">
-                      <Github className="mr-1.5 h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                  {project.live && (
-                    <Button
-                      size="sm"
-                      asChild
-                      className="bg-[#2c4c9c] hover:bg-[#1e356e] text-white"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <a href={project.live} target="_blank" rel="noreferrer">
-                        <ExternalLink className="mr-1.5 h-4 w-4 text-white" />
-                        Demo
-                      </a>
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
-            ))}
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button onClick={() => setSelectedProject(featured)}>
+                  View Case Study
+                  <Search className="ml-2 h-4 w-4" />
+                </Button>
+                <ProjectLinks project={featured} compact />
+              </div>
+            </CardContent>
           </div>
+        </Card>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          {rest.map((project) => (
+            <Card key={project.title} className="premium-card overflow-hidden">
+              <button
+                type="button"
+                onClick={() => setSelectedProject(project)}
+                className="group block w-full overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                aria-label={`Open case study for ${project.title}`}
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  {project.image ? (
+                    <img
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                    />
+                  ) : (
+                    <div className={`flex h-full items-center justify-center bg-gradient-to-br ${project.imageColor}`}>
+                      <LayoutDashboard className="h-16 w-16 text-white/45" />
+                    </div>
+                  )}
+                </div>
+              </button>
+              <CardContent className="p-6">
+                <p className="section-kicker">{project.eyebrow}</p>
+                <h3 className="mt-3 text-xl font-semibold tracking-tight">{project.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
+                <div className="mt-4 rounded-2xl border border-border/80 bg-secondary/35 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-foreground">Problem solved</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{project.problem}</p>
+                </div>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Button size="sm" onClick={() => setSelectedProject(project)}>
+                    View Case Study
+                  </Button>
+                  <ProjectLinks project={project} compact />
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
 
-      <ProjectModal
-        project={selectedProject}
-        open={selectedProject !== null}
-        onClose={() => setSelectedProject(null)}
-      />
-    </section>
+      <ProjectModal project={selectedProject} open={selectedProject !== null} onClose={() => setSelectedProject(null)} />
+    </div>
   );
 }

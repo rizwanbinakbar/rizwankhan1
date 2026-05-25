@@ -1,84 +1,80 @@
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
+import { BarChart3, CloudCog, Code2, Database } from "lucide-react";
 
-const skillCategories = [
+const capabilityGroups = [
   {
-    title: "Data Analytics",
-    accent: "from-blue-500 to-indigo-600",
-    skills: [
-      "Python",
-      "SQL",
-      "Power BI",
-      "Excel",
-      "Data Visualization",
-      "A/B Testing"
-    ],
+    title: "Analytics & BI",
+    icon: BarChart3,
+    description:
+      "Build Power BI dashboards, clean messy datasets, model KPIs, and create reporting views that business users can understand quickly.",
+    tools: ["Power BI", "DAX", "Power Query", "Excel", "Data Visualization", "KPI Modeling"],
   },
   {
     title: "Data Engineering",
-    accent: "from-violet-500 to-purple-600",
-    skills: [
-      "PySpark",
-      "Apache Spark",
-      "ETL / ELT Pipelines",
-      "Data Warehousing",
-      "Medallion Architecture",
-      "Data Pipeline Orchestration"
-    ],
+    icon: Database,
+    description:
+      "Design SQL-first data workflows, prepare warehouse layers, handle data quality checks, and turn raw tables into analysis-ready models.",
+    tools: ["SQL", "ETL", "Data Warehousing", "Medallion Architecture", "PySpark", "Apache Spark"],
   },
   {
-    title: "Cloud & DevOps",
-    accent: "from-cyan-500 to-sky-600",
-    skills: [
-      "AWS",
-      "Docker",
-      "Git",
-    ],
+    title: "Automation & Cloud",
+    icon: CloudCog,
+    description:
+      "Automate recurring reporting steps, connect source files and cloud storage, and make handoffs easier for clients and teammates.",
+    tools: ["SharePoint", "AWS", "Docker", "Git", "Workflow Automation"],
   },
   {
-    title: "Databases",
-    accent: "from-emerald-500 to-teal-600",
-    skills: [
-      "PostgreSQL",
-      "MySQL",
-      "MongoDB",
-      "Snowflake",
-      "BigQuery"
-    ],
+    title: "Programming & Databases",
+    icon: Code2,
+    description:
+      "Use Python and database tools to prepare data, validate assumptions, write reusable scripts, and support dashboard or pipeline work.",
+    tools: ["Python", "PostgreSQL", "MySQL", "MongoDB", "Pandas", "GitHub"],
   },
 ];
 
 export function Skills() {
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <span className="section-label">Expertise</span>
-          <h2 className="text-4xl font-bold mb-3 gradient-text">Skills &amp; Technologies</h2>
-          <div className="section-accent-line" />
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-5 italic">
-            Every tool here earns its place — built to deliver real, measurable results.
+    <div className="section-shell bg-section-light px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="section-heading">
+          <p className="section-kicker">Capabilities</p>
+          <h2>Practical data skills, organized by the work they support.</h2>
+          <p>
+            I am strongest where analytics and engineering meet: getting data into shape, building reliable reporting
+            layers, and making the output clear enough for decisions.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 stagger-animation">
-          {skillCategories.map((category) => (
-            <Card key={category.title} className="border bg-card card-lift overflow-hidden">
-              <div className={`h-1.5 w-full bg-gradient-to-r ${category.accent}`} />
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-4">{category.title}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
-                    <Badge key={skill} variant="secondary">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="grid gap-5 md:grid-cols-2">
+          {capabilityGroups.map((group) => {
+            const Icon = group.icon;
+
+            return (
+              <Card key={group.title} className="premium-card">
+                <CardContent className="p-6 sm:p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-2xl border border-border bg-secondary/60 p-3 text-accent-blue">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold tracking-tight">{group.title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">{group.description}</p>
+                    </div>
+                  </div>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {group.tools.map((tool) => (
+                      <Badge key={tool} variant="secondary">
+                        {tool}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
