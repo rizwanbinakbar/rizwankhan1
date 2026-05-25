@@ -25,3 +25,9 @@ yarn-error.log*
 .env
 .env.*
 !.env.example
+
+node_modules/
+dist/.chrome-mobile/
+*.tsbuildinfo
+.env
+.env.local
