@@ -41,7 +41,7 @@ export function Contact() {
                   </div>
                 ) : (
                   <img
-                    src="/Rizwan.PFP.png"
+                    src="/RizwanKhan.pfp.png"
                     alt="Portrait of Rizwan Khan"
                     className="h-full w-full object-cover"
                     onError={() => setImgError(true)}
