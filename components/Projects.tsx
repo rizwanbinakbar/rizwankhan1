@@ -35,7 +35,7 @@ const projects: Project[] = [
     image: "/FitnessDashboard1.png",
     caseStudy: {
       problem: [
-        "A coach was tracking 45 athletes manually with no single reporting view.",
+        "A coach was tracking 65+ athletes manually with no single reporting view.",
         "Strength, mobility, and phase progress were hard to compare over time.",
         "Monthly reporting required repeated manual work before updates could be shared.",
       ],
