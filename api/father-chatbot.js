@@ -105,6 +105,113 @@ function isIncomeQuestion(text) {
   return /\b(income|salary|earn|earning|monthly|money|paid|payment)\b/i.test(text);
 }
 
+function getLatestUserMessage(messages) {
+  return [...messages].reverse().find((message) => message.role === "user")?.content || "";
+}
+
+function hasRecentFatherContext(messages) {
+  return messages
+    .slice(-6)
+    .some((message) =>
+      /\b(akbar|father|profession|job|work|evacify|design|designer|map|maps|evacuation|fire|emergency|floor|client|freelance)\b/i.test(
+        message.content,
+      ),
+    );
+}
+
+function isFatherRelatedQuestion(text, messages) {
+  if (
+    /\b(akbar|father|dad|profession|job|work|career|evacify|design|designer|map|maps|evacuation|fire|emergency|floor|plan|plans|responsibilities|duties|skills|experience|education|degree|routine|client|clients|international|remote|home|freelance|founder|income|salary|earn|earning|x-graphics|islamabad)\b/i.test(
+      text,
+    )
+  ) {
+    return true;
+  }
+
+  return /\b(he|him|his|that|there|this work|his work|his job)\b/i.test(text) && hasRecentFatherContext(messages);
+}
+
+function getFallbackAnswer(messages) {
+  const latestUserMessage = getLatestUserMessage(messages);
+  const text = latestUserMessage.toLowerCase();
+
+  if (!isFatherRelatedQuestion(latestUserMessage, messages)) {
+    return UNRELATED_REPLY;
+  }
+
+  if (isIncomeQuestion(latestUserMessage)) {
+    return INCOME_REPLY;
+  }
+
+  if (/\b(how.*work|how.*works|trained|fine[-\s]?tuned|context|knowledge base|system prompt|prompt)\b/i.test(text)) {
+    return "This chatbot uses a structured professional profile about Akbar Khan as context. It does not reveal system instructions or private environment information.";
+  }
+
+  if (/\b(software|tool|tools|app|apps|program|programs)\b/i.test(text)) {
+    return MISSING_INFORMATION_REPLY;
+  }
+
+  if (/\b(evacify|business|company)\b/i.test(text)) {
+    return "Evacify is Akbar Khan's business name. Through it, he works independently as a design consultant on fire evacuation maps, emergency plans, floor maps, and building-layout documentation.";
+  }
+
+  if (/\b(previous|before|x-graphics|islamabad|past work|worked previously)\b/i.test(text)) {
+    return "Akbar Khan previously worked at X-Graphics in Islamabad.";
+  }
+
+  if (/\b(how.*enter|how.*start|started|entered|became|move into)\b/i.test(text)) {
+    return "Akbar Khan developed professional design skills and gained experience in graphic design. He later moved into freelancing, worked with international clients, and specialized in fire evacuation maps, emergency plans, and floor maps.";
+  }
+
+  if (/\b(experience|years|long)\b/i.test(text)) {
+    return "Akbar Khan has approximately 15 years of professional experience.";
+  }
+
+  if (/\b(education|degree|study|studied|qualification|qualified)\b/i.test(text)) {
+    return "Akbar Khan has a Bachelor's degree in English Literature.";
+  }
+
+  if (/\b(responsibilities|duties|tasks|does daily|main work)\b/i.test(text)) {
+    return [
+      "Akbar Khan's main responsibilities include:",
+      "- Designing fire evacuation maps and emergency exit plans",
+      "- Creating floor maps and building-layout diagrams",
+      "- Converting sketches or architectural plans into professional maps",
+      "- Showing exits, escape routes, assembly points, fire extinguishers, and safety equipment",
+      "- Reviewing work for accuracy and making revisions based on client feedback",
+      "- Managing deadlines and communicating with international clients",
+    ].join("\n");
+  }
+
+  if (/\b(skill|skills|good at|ability|abilities)\b/i.test(text)) {
+    return [
+      "His professional skills include graphic design, fire evacuation map design, floor-plan design, visual communication, quality assurance, client communication, project management, remote collaboration, and attention to detail.",
+    ].join("\n");
+  }
+
+  if (/\b(routine|daily|day|hours|schedule|time zone|timezone)\b/i.test(text)) {
+    return "Akbar Khan generally works from home. His day may include checking client messages, reviewing requirements, studying floor layouts, designing evacuation maps, checking for errors, making revisions, and delivering completed projects. His working hours may vary depending on deadlines and client time zones.";
+  }
+
+  if (/\b(remote|home|location|where|work from)\b/i.test(text)) {
+    return "Akbar Khan works remotely from home.";
+  }
+
+  if (/\b(client|clients|international|freelance|freelancer|self-employed|self employed)\b/i.test(text)) {
+    return "Akbar Khan is a self-employed freelancer who communicates with international clients, understands their requirements, revises designs based on feedback, and manages project deadlines.";
+  }
+
+  if (/\b(map|maps|evacuation|fire|emergency|floor|plans|building|layout|safety)\b/i.test(text)) {
+    return "He designs fire evacuation maps, emergency exit and evacuation plans, floor maps, and building-layout diagrams. These maps can show escape routes, assembly points, fire extinguishers, safety equipment, and other important layout details.";
+  }
+
+  if (/\b(who|what.*do|job|career|work|title|founder|design consultant|profession)\b/i.test(text)) {
+    return "Akbar Khan is a Design Consultant and Founder of Evacify. He works remotely as a self-employed freelancer, mainly designing fire evacuation maps, emergency plans, floor maps, and safety-related building-layout documentation.";
+  }
+
+  return MISSING_INFORMATION_REPLY;
+}
+
 function toGeminiContents(messages) {
   return messages.map((message) => ({
     role: message.role === "assistant" ? "model" : "user",
@@ -208,8 +315,6 @@ async function callGemini({ apiKey, messages }) {
     },
   };
 
-  let lastStatus = 502;
-
   for (const model of getModelCandidates()) {
     let response;
 
@@ -222,13 +327,12 @@ async function callGemini({ apiKey, messages }) {
       });
 
       return {
-        status: 502,
-        reply: "Gemini is not responding right now. Please try again shortly.",
+        status: 200,
+        reply: getFallbackAnswer(messages),
       };
     }
 
     if (response.status === 404 || response.status === 400) {
-      lastStatus = response.status;
       logApiIssue("gemini-model-skipped", { model, status: response.status });
       continue;
     }
@@ -236,16 +340,16 @@ async function callGemini({ apiKey, messages }) {
     if (response.status === 401 || response.status === 403) {
       logApiIssue("gemini-key-rejected", { model, status: response.status });
       return {
-        status: 502,
-        reply: "The Gemini API key was rejected. Please check the Vercel environment variable and API key permissions.",
+        status: 200,
+        reply: getFallbackAnswer(messages),
       };
     }
 
     if (!response.ok) {
       logApiIssue("gemini-error-status", { model, status: response.status });
       return {
-        status: 502,
-        reply: "Gemini is not responding right now. Please try again shortly.",
+        status: 200,
+        reply: getFallbackAnswer(messages),
       };
     }
 
@@ -257,8 +361,8 @@ async function callGemini({ apiKey, messages }) {
     if (!reply) {
       logApiIssue("gemini-empty-response", { model, status: response.status });
       return {
-        status: 502,
-        reply: "The chatbot returned an empty response. Please try again.",
+        status: 200,
+        reply: getFallbackAnswer(messages),
       };
     }
 
@@ -266,11 +370,8 @@ async function callGemini({ apiKey, messages }) {
   }
 
   return {
-    status: 502,
-    reply:
-      lastStatus === 400
-        ? "Gemini rejected the request format. Please redeploy after the API update."
-        : "No supported Gemini model was available for this API key.",
+    status: 200,
+    reply: getFallbackAnswer(messages),
   };
 }
 
@@ -304,6 +405,6 @@ export default async function handler(req, res) {
     logApiIssue("unexpected-error", {
       message: error instanceof Error ? error.message : "Unknown error",
     });
-    return res.status(502).json({ reply: "Gemini is not responding right now. Please try again shortly." });
+    return res.status(200).json({ reply: getFallbackAnswer(messages) });
   }
 }
