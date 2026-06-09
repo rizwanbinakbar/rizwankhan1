@@ -7,6 +7,7 @@ import { Skills } from "./components/Skills";
 import { Experience } from "./components/Experience";
 import { Education } from "./components/Education";
 import { Contact } from "./components/Contact";
+import { FatherChatbot } from "./components/FatherChatbot";
 
 const navItems = [
   { label: "Projects", href: "#projects" },
@@ -18,6 +19,11 @@ const navItems = [
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isFatherChatbotPage = window.location.pathname === "/father-chatbot";
+
+  if (isFatherChatbotPage) {
+    return <FatherChatbot />;
+  }
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground antialiased">

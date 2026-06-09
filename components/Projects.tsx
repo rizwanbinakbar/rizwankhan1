@@ -17,6 +17,7 @@ interface Project {
   tags: string[];
   github?: string;
   live?: string;
+  liveLabel?: string;
   image?: string;
   caseStudy: {
     problem: string[];
@@ -101,6 +102,30 @@ const projects: Project[] = [
       ],
     },
   },
+  {
+    title: "AI Chatbot - Father's Profession",
+    summary: "A portfolio-native AI chatbot about my father's career.",
+    tags: ["AI", "Gemini API", "Python", "Vercel", "Prompt Engineering"],
+    live: "/father-chatbot",
+    liveLabel: "Live Demo",
+    caseStudy: {
+      problem: [
+        "The assignment needed a public AI chatbot without a separate Streamlit app.",
+        "The API key had to stay on the server.",
+        "The chat needed temporary memory without saving conversations permanently.",
+      ],
+      built: [
+        "Built a React chatbot page inside the existing portfolio.",
+        "Added a Vercel serverless API endpoint that calls Gemini with a structured profile.",
+        "Used sessionStorage so messages survive refreshes but are not permanently stored.",
+      ],
+      result: [
+        <>Created a shareable AI course project at /father-chatbot.</>,
+        <>Kept the Gemini key out of frontend code.</>,
+        <>Added clear guardrails for questions about Akbar Khan and his profession.</>,
+      ],
+    },
+  },
 ];
 
 function ProjectLinks({ project }: { project: Project }) {
@@ -116,9 +141,13 @@ function ProjectLinks({ project }: { project: Project }) {
       )}
       {project.live && (
         <Button variant="outline" size="sm" asChild>
-          <a href={project.live} target="_blank" rel="noreferrer">
+          <a
+            href={project.live}
+            target={project.live.startsWith("http") ? "_blank" : undefined}
+            rel={project.live.startsWith("http") ? "noreferrer" : undefined}
+          >
             <ExternalLink className="mr-2 h-4 w-4" />
-            Details
+            {project.liveLabel ?? "Details"}
           </a>
         </Button>
       )}
@@ -238,17 +267,20 @@ export function Projects() {
                   <h3 className="text-xl font-semibold leading-snug tracking-tight">{project.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.summary}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {project.tags.slice(0, 4).map((tag) => (
+                {project.tags.slice(0, 5).map((tag) => (
                       <Badge key={tag} variant="secondary">
                         {tag}
                       </Badge>
                     ))}
                   </div>
                   <div className="mt-auto pt-6">
-                    <Button variant="link" className="h-auto p-0 text-accent-orange" onClick={() => setSelectedProject(project)}>
-                      View details
-                      <ArrowIcon />
-                    </Button>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <Button variant="link" className="h-auto p-0 text-accent-orange" onClick={() => setSelectedProject(project)}>
+                        View details
+                        <ArrowIcon />
+                      </Button>
+                      <ProjectLinks project={project} />
+                    </div>
                   </div>
                 </div>
               </CardContent>

@@ -1,5 +1,8 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+  "rewrites": [
+    { "source": "/father-chatbot", "destination": "/" },
+    { "source": "/father-chatbot/", "destination": "/" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
