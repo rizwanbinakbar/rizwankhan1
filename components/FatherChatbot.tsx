@@ -4,11 +4,13 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
 type ChatRole = "user" | "assistant";
+type ChatSource = "gemini" | "fallback" | "profile";
 
 interface ChatMessage {
   id: string;
   role: ChatRole;
   content: string;
+  source?: ChatSource;
 }
 
 const STORAGE_KEY = "father-chatbot-messages";
@@ -26,11 +28,23 @@ const suggestedQuestions = [
 
 const technologyTags = ["AI", "Gemini", "Vercel", "Serverless"];
 
-function createMessage(role: ChatRole, content: string): ChatMessage {
+function isChatSource(source: unknown): source is ChatSource {
+  return source === "gemini" || source === "fallback" || source === "profile";
+}
+
+function getSourceLabel(source?: ChatSource) {
+  if (source === "gemini") return "Answered by Gemini";
+  if (source === "fallback") return "Profile fallback";
+  if (source === "profile") return "Profile rule";
+  return null;
+}
+
+function createMessage(role: ChatRole, content: string, source?: ChatSource): ChatMessage {
   return {
     id: `${role}-${Date.now()}-${Math.random().toString(16).slice(2)}`,
     role,
     content,
+    source,
   };
 }
 
@@ -45,7 +59,8 @@ function loadMessages() {
       (message): message is ChatMessage =>
         typeof message?.id === "string" &&
         (message.role === "user" || message.role === "assistant") &&
-        typeof message.content === "string",
+        typeof message.content === "string" &&
+        (message.source === undefined || isChatSource(message.source)),
     );
   } catch {
     return [];
@@ -148,7 +163,10 @@ export function FatherChatbot() {
         throw new Error(data?.reply || "The chatbot could not answer right now.");
       }
 
-      setMessages((current) => [...current, createMessage("assistant", data.reply)]);
+      setMessages((current) => [
+        ...current,
+        createMessage("assistant", data.reply, isChatSource(data.source) ? data.source : undefined),
+      ]);
       setLastRequestMessages(null);
     } catch (requestError) {
       const message =
@@ -282,11 +300,16 @@ export function FatherChatbot() {
                     <div className="father-avatar" aria-hidden="true">
                       {message.role === "user" ? <UserRound className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
                     </div>
-                    <div className="father-message-bubble">
-                      {message.role === "assistant" ? (
-                        <MarkdownMessage content={message.content} />
-                      ) : (
-                        <p>{message.content}</p>
+                    <div className="father-message-content">
+                      <div className="father-message-bubble">
+                        {message.role === "assistant" ? (
+                          <MarkdownMessage content={message.content} />
+                        ) : (
+                          <p>{message.content}</p>
+                        )}
+                      </div>
+                      {message.role === "assistant" && getSourceLabel(message.source) && (
+                        <p className="father-message-source">{getSourceLabel(message.source)}</p>
                       )}
                     </div>
                   </article>

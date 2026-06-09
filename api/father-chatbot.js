@@ -329,6 +329,7 @@ async function callGemini({ apiKey, messages }) {
       return {
         status: 200,
         reply: getFallbackAnswer(messages),
+        source: "fallback",
       };
     }
 
@@ -342,6 +343,7 @@ async function callGemini({ apiKey, messages }) {
       return {
         status: 200,
         reply: getFallbackAnswer(messages),
+        source: "fallback",
       };
     }
 
@@ -350,6 +352,7 @@ async function callGemini({ apiKey, messages }) {
       return {
         status: 200,
         reply: getFallbackAnswer(messages),
+        source: "fallback",
       };
     }
 
@@ -363,15 +366,17 @@ async function callGemini({ apiKey, messages }) {
       return {
         status: 200,
         reply: getFallbackAnswer(messages),
+        source: "fallback",
       };
     }
 
-    return { status: 200, reply };
+    return { status: 200, reply, source: "gemini" };
   }
 
   return {
     status: 200,
     reply: getFallbackAnswer(messages),
+    source: "fallback",
   };
 }
 
@@ -389,7 +394,7 @@ export default async function handler(req, res) {
 
   const latestUserMessage = [...messages].reverse().find((message) => message.role === "user")?.content || "";
   if (isIncomeQuestion(latestUserMessage)) {
-    return res.status(200).json({ reply: INCOME_REPLY });
+    return res.status(200).json({ reply: INCOME_REPLY, source: "profile" });
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
@@ -400,11 +405,11 @@ export default async function handler(req, res) {
 
   try {
     const result = await callGemini({ apiKey: apiKey.trim(), messages });
-    return res.status(result.status).json({ reply: result.reply });
+    return res.status(result.status).json({ reply: result.reply, source: result.source });
   } catch (error) {
     logApiIssue("unexpected-error", {
       message: error instanceof Error ? error.message : "Unknown error",
     });
-    return res.status(200).json({ reply: getFallbackAnswer(messages) });
+    return res.status(200).json({ reply: getFallbackAnswer(messages), source: "fallback" });
   }
 }
