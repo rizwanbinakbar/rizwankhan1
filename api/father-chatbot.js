@@ -237,6 +237,20 @@ function logApiIssue(stage, details = {}) {
   });
 }
 
+function getGeminiErrorDetails(data) {
+  const error = data?.error;
+  if (!error) return {};
+
+  return {
+    geminiCode: typeof error.code === "number" ? error.code : undefined,
+    geminiStatus: typeof error.status === "string" ? error.status : undefined,
+    geminiMessage:
+      typeof error.message === "string"
+        ? error.message.replace(/\s+/g, " ").slice(0, 220)
+        : undefined,
+  };
+}
+
 function parseRequestBody(body) {
   if (!body) return {};
   if (typeof body === "string") {
@@ -334,12 +348,20 @@ async function callGemini({ apiKey, messages }) {
     }
 
     if (response.status === 404 || response.status === 400) {
-      logApiIssue("gemini-model-skipped", { model, status: response.status });
+      logApiIssue("gemini-model-skipped", {
+        model,
+        status: response.status,
+        ...getGeminiErrorDetails(response.data),
+      });
       continue;
     }
 
     if (response.status === 401 || response.status === 403) {
-      logApiIssue("gemini-key-rejected", { model, status: response.status });
+      logApiIssue("gemini-key-rejected", {
+        model,
+        status: response.status,
+        ...getGeminiErrorDetails(response.data),
+      });
       return {
         status: 200,
         reply: getFallbackAnswer(messages),
@@ -348,12 +370,12 @@ async function callGemini({ apiKey, messages }) {
     }
 
     if (!response.ok) {
-      logApiIssue("gemini-error-status", { model, status: response.status });
-      return {
-        status: 200,
-        reply: getFallbackAnswer(messages),
-        source: "fallback",
-      };
+      logApiIssue("gemini-model-skipped", {
+        model,
+        status: response.status,
+        ...getGeminiErrorDetails(response.data),
+      });
+      continue;
     }
 
     const reply = response.data?.candidates?.[0]?.content?.parts
