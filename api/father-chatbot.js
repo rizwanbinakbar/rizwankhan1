@@ -1,3 +1,5 @@
+import https from "https";
+
 const MISSING_INFORMATION_REPLY = "That information has not been provided in my knowledge base.";
 const UNRELATED_REPLY = "I am designed specifically to answer questions about Akbar Khan and his profession.";
 const INCOME_REPLY =
@@ -114,11 +116,84 @@ function getModelCandidates() {
   const configuredModel = process.env.GEMINI_MODEL?.trim();
   return [
     configuredModel,
-    "gemini-3.5-flash",
     "gemini-2.5-flash",
     "gemini-2.0-flash",
     "gemini-1.5-flash",
+    "gemini-3.5-flash",
   ].filter(Boolean);
+}
+
+function logApiIssue(stage, details = {}) {
+  console.error("[father-chatbot]", {
+    stage,
+    ...details,
+  });
+}
+
+function parseRequestBody(body) {
+  if (!body) return {};
+  if (typeof body === "string") {
+    try {
+      return JSON.parse(body);
+    } catch {
+      return {};
+    }
+  }
+
+  return body;
+}
+
+function requestGeminiJson({ apiKey, model, payload }) {
+  const body = JSON.stringify(payload);
+  const path = `/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+  return new Promise((resolve, reject) => {
+    const request = https.request(
+      {
+        hostname: "generativelanguage.googleapis.com",
+        method: "POST",
+        path,
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Length": Buffer.byteLength(body),
+        },
+        timeout: 20000,
+      },
+      (response) => {
+        let responseBody = "";
+
+        response.setEncoding("utf8");
+        response.on("data", (chunk) => {
+          responseBody += chunk;
+        });
+        response.on("end", () => {
+          let data = null;
+
+          if (responseBody) {
+            try {
+              data = JSON.parse(responseBody);
+            } catch {
+              data = null;
+            }
+          }
+
+          resolve({
+            ok: response.statusCode >= 200 && response.statusCode < 300,
+            status: response.statusCode || 502,
+            data,
+          });
+        });
+      },
+    );
+
+    request.on("timeout", () => {
+      request.destroy(new Error("Gemini request timed out"));
+    });
+
+    request.on("error", reject);
+    request.write(body);
+    request.end();
+  });
 }
 
 async function callGemini({ apiKey, messages }) {
@@ -136,24 +211,30 @@ async function callGemini({ apiKey, messages }) {
   let lastStatus = 502;
 
   for (const model of getModelCandidates()) {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": apiKey,
-        },
-        body: JSON.stringify(payload),
-      },
-    );
+    let response;
+
+    try {
+      response = await requestGeminiJson({ apiKey, model, payload });
+    } catch (error) {
+      logApiIssue("gemini-network-error", {
+        model,
+        message: error instanceof Error ? error.message : "Unknown network error",
+      });
+
+      return {
+        status: 502,
+        reply: "Gemini is not responding right now. Please try again shortly.",
+      };
+    }
 
     if (response.status === 404 || response.status === 400) {
       lastStatus = response.status;
+      logApiIssue("gemini-model-skipped", { model, status: response.status });
       continue;
     }
 
     if (response.status === 401 || response.status === 403) {
+      logApiIssue("gemini-key-rejected", { model, status: response.status });
       return {
         status: 502,
         reply: "The Gemini API key was rejected. Please check the Vercel environment variable and API key permissions.",
@@ -161,19 +242,20 @@ async function callGemini({ apiKey, messages }) {
     }
 
     if (!response.ok) {
+      logApiIssue("gemini-error-status", { model, status: response.status });
       return {
         status: 502,
         reply: "Gemini is not responding right now. Please try again shortly.",
       };
     }
 
-    const data = await response.json();
-    const reply = data?.candidates?.[0]?.content?.parts
+    const reply = response.data?.candidates?.[0]?.content?.parts
       ?.map((part) => part.text || "")
       .join("")
       .trim();
 
     if (!reply) {
+      logApiIssue("gemini-empty-response", { model, status: response.status });
       return {
         status: 502,
         reply: "The chatbot returned an empty response. Please try again.",
@@ -197,8 +279,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ reply: "Method not allowed. Use POST." });
   }
 
-  const messages = normalizeMessages(req.body?.messages);
+  const body = parseRequestBody(req.body);
+  const messages = normalizeMessages(body.messages);
   if (!messages.length) {
+    logApiIssue("invalid-request-body");
     return res.status(400).json({ reply: "Invalid request. Please send at least one message." });
   }
 
@@ -209,13 +293,17 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
+    logApiIssue("missing-api-key");
     return res.status(500).json({ reply: "The chatbot is not configured yet. The server API key is missing." });
   }
 
   try {
-    const result = await callGemini({ apiKey, messages });
+    const result = await callGemini({ apiKey: apiKey.trim(), messages });
     return res.status(result.status).json({ reply: result.reply });
-  } catch {
+  } catch (error) {
+    logApiIssue("unexpected-error", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
     return res.status(502).json({ reply: "Gemini is not responding right now. Please try again shortly." });
   }
 }
