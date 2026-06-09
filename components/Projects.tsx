@@ -105,7 +105,7 @@ const projects: Project[] = [
   {
     title: "AI Chatbot - Father's Profession",
     summary: "A portfolio-native AI chatbot about my father's career.",
-    tags: ["AI", "Gemini API", "Python", "Vercel", "Prompt Engineering"],
+    tags: ["AI", "Gemini API", "Vercel", "Prompt Engineering"],
     live: "/father-chatbot",
     liveLabel: "Live Demo",
     caseStudy: {

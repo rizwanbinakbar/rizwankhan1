@@ -24,7 +24,7 @@ const suggestedQuestions = [
   "Does he work with international clients?",
 ];
 
-const technologyTags = ["AI", "Gemini", "Python", "Vercel"];
+const technologyTags = ["AI", "Gemini", "Vercel", "Serverless"];
 
 function createMessage(role: ChatRole, content: string): ChatMessage {
   return {
