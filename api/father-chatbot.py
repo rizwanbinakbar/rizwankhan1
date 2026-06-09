@@ -178,7 +178,7 @@ class handler(BaseHTTPRequestHandler):
         try:
             client = genai.Client(api_key=api_key)
             response = client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-3.5-flash",
                 contents=to_gemini_contents(messages),
                 config=types.GenerateContentConfig(
                     system_instruction=SYSTEM_INSTRUCTION,
