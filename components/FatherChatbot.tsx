@@ -33,9 +33,9 @@ function isChatSource(source: unknown): source is ChatSource {
 }
 
 function getSourceLabel(source?: ChatSource) {
-  if (source === "gemini") return "Answered by Gemini";
-  if (source === "fallback") return "Profile fallback";
-  if (source === "profile") return "Profile rule";
+  if (source === "gemini") return "Source: Gemini";
+  if (source === "fallback") return "Source: Profile fallback";
+  if (source === "profile") return "Source: Profile rule";
   return null;
 }
 
@@ -230,7 +230,7 @@ export function FatherChatbot() {
         <section className="father-sidebar-section">
           <h2>About this project</h2>
           <p>
-            A university AI assignment about Akbar Khan, his profession, and his work as a design consultant.
+            Serverless AI interface for querying a structured professional profile about Akbar Khan.
           </p>
         </section>
 
@@ -245,7 +245,7 @@ export function FatherChatbot() {
           </div>
         </section>
 
-        <p className="father-privacy-note">Messages are temporary and are not permanently stored.</p>
+        <p className="father-privacy-note">Session memory only. No database. No permanent chat storage.</p>
 
         <Button variant="outline" onClick={clearConversation} className="w-full">
           <Trash2 className="mr-2 h-4 w-4" />
@@ -267,19 +267,19 @@ export function FatherChatbot() {
         <section className="father-chat-shell" aria-label="Father profession chatbot">
           <div className="father-chat-header">
             <div>
-              <Badge className="mb-3 border-orange bg-orange-soft text-accent-orange hover:bg-orange-soft">
+              <Badge className="mb-3 rounded-none border-0 bg-transparent px-0 text-muted-foreground hover:bg-transparent">
                 Live AI Demo
               </Badge>
               <h1>Ask About My Father&apos;s Profession</h1>
-              <p>An AI course project by Rizwan Khan</p>
+              <p>Gemini API through a Vercel serverless function. Temporary browser session memory.</p>
             </div>
           </div>
 
           <div className="father-conversation" aria-live="polite">
             {messages.length === 0 ? (
               <div className="father-welcome">
-                <Bot className="h-8 w-8 text-accent-orange" />
-                <h2>Ask me about Akbar Khan&apos;s profession, experience, work, or responsibilities.</h2>
+                <Bot className="h-7 w-7 text-muted-foreground" />
+                <h2>Query Akbar Khan&apos;s profession, experience, work, or responsibilities.</h2>
                 <div className="father-suggestions">
                   {suggestedQuestions.map((question) => (
                     <button

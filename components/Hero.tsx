@@ -1,4 +1,3 @@
-import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ArrowRight, Download, Mail } from "lucide-react";
 
@@ -6,19 +5,14 @@ export function Hero() {
   return (
     <div className="section-wrap pt-14 sm:pt-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl border-b border-border pb-16 text-center">
-          <Badge className="mb-7 rounded-full border-orange bg-orange-soft px-3 py-1 text-accent-orange hover:bg-orange-soft">
-            Open to data internships and junior roles
-          </Badge>
-
-          <p className="section-label">Rizwan Khan - AI/Data Engineering Student</p>
-          <h1 className="font-display mx-auto mt-5 max-w-3xl text-balance text-4xl leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            I build dashboards and data workflows that make <em>messy data</em> usable.
+        <div className="mx-auto max-w-5xl border-b border-border pb-20 text-center">
+          <p className="section-label">Rizwan Khan - Data Engineer</p>
+          <h1 className="font-display mx-auto mt-6 max-w-4xl text-balance text-5xl leading-[0.96] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
+            I build dashboards and data workflows that make messy data usable.
           </h1>
 
-          <p className="mx-auto mt-7 max-w-2xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
-            AI student working with Power BI, SQL, reporting workflows, and practical data systems.
-            Turning raw files into something teams can actually use.
+          <p className="mx-auto mt-8 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">
+            Power BI, SQL, ETL, and reporting systems for teams that need cleaner data and clearer decisions.
           </p>
 
           <div className="mx-auto mt-8 flex max-w-xl min-w-0 flex-col justify-center gap-3 sm:flex-row">
@@ -42,8 +36,8 @@ export function Hero() {
             </Button>
           </div>
 
-          <p className="mx-auto mt-8 max-w-xl text-sm leading-6 text-muted-foreground">
-            Currently building stronger SQL, Power BI, and data engineering fundamentals.
+          <p className="mx-auto mt-10 max-w-xl text-sm font-medium leading-6 text-muted-foreground">
+            Current focus: SQL modeling, Power BI reporting, and practical data engineering fundamentals.
           </p>
         </div>
       </div>

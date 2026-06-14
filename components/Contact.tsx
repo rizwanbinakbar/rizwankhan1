@@ -54,7 +54,7 @@ export function Contact() {
               <p className="section-label">Contact</p>
               <h2 className="font-display mt-3 text-3xl tracking-tight sm:text-4xl">Let&apos;s talk.</h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground">
-                Open to data internships, junior data roles, and small client projects. Email or LinkedIn works best.
+                Available for data roles, reporting work, and serious client projects. Email or LinkedIn works best.
               </p>
               <div className="mt-5 flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4 text-accent-orange" />

@@ -62,7 +62,7 @@ export default function App() {
         </nav>
 
         {mobileMenuOpen && (
-          <div className="border-t border-border bg-background px-4 py-3 shadow-sm md:hidden">
+          <div className="border-t border-border bg-background px-4 py-3 md:hidden">
             <div className="mx-auto grid max-w-6xl gap-1">
               {navItems.map((item) => (
                 <a
