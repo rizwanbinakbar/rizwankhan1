@@ -1,7 +1,7 @@
 {
   "rewrites": [
-    { "source": "/father-chatbot", "destination": "/" },
-    { "source": "/father-chatbot/", "destination": "/" }
+    { "source": "/rizwangpt", "destination": "/" },
+    { "source": "/rizwangpt/", "destination": "/" }
   ],
   "headers": [
     {

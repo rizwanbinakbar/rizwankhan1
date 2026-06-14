@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Mail, Sparkles } from "lucide-react";
 
 export function Hero() {
   return (
@@ -23,9 +23,9 @@ export function Hero() {
               </a>
             </Button>
             <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
-              <a href="/Rizwan_DA_Resume.pdf" download>
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
+              <a href="/rizwangpt">
+                <Sparkles className="mr-2 h-4 w-4" />
+                Ask RizwanGPT
               </a>
             </Button>
             <Button size="lg" variant="ghost" asChild className="w-full sm:w-auto">

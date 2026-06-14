@@ -98,31 +98,6 @@ const projects: Project[] = [
       ],
     },
   },
-  {
-    title: "AI Chatbot - Father's Profession",
-    summary: "A serverless LLM project embedded directly inside the portfolio.",
-    tags: ["Gemini API", "Vercel Functions", "sessionStorage", "Prompt Engineering"],
-    live: "/father-chatbot",
-    liveLabel: "Live Demo",
-    caseStudy: {
-      problem: [
-        "The assignment needed a public AI chatbot without a separate Streamlit app or iframe.",
-        "The Gemini API key had to stay server-side.",
-        "The chat needed temporary memory without a database or permanent storage.",
-      ],
-      built: [
-        "Built a React chatbot route inside the existing Vite portfolio.",
-        "Used a Vercel serverless function for secure LLM orchestration and Gemini API proxying.",
-        "Stored temporary conversation state in sessionStorage for zero-latency stateless memory.",
-        "Added a server-side profile fallback when Gemini is unavailable.",
-      ],
-      result: [
-        <>Created a shareable AI course project at /father-chatbot.</>,
-        <>Kept secrets out of the browser.</>,
-        <>Made the answer source visible as Gemini, profile rule, or fallback.</>,
-      ],
-    },
-  },
 ];
 
 function ProjectLinks({ project }: { project: Project }) {

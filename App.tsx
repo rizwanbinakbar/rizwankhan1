@@ -7,7 +7,7 @@ import { Skills } from "./components/Skills";
 import { Experience } from "./components/Experience";
 import { Education } from "./components/Education";
 import { Contact } from "./components/Contact";
-import { FatherChatbot } from "./components/FatherChatbot";
+import { RizwanGPT } from "./components/RizwanGPT";
 
 const navItems = [
   { label: "Projects", href: "#projects" },
@@ -19,10 +19,10 @@ const navItems = [
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isFatherChatbotPage = window.location.pathname === "/father-chatbot";
+  const isRizwanGPTPage = window.location.pathname === "/rizwangpt";
 
-  if (isFatherChatbotPage) {
-    return <FatherChatbot />;
+  if (isRizwanGPTPage) {
+    return <RizwanGPT />;
   }
 
   return (
