@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { ArrowRight, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, Download, Mail, Sparkles } from "lucide-react";
 
 export function Hero() {
   return (
@@ -15,7 +15,7 @@ export function Hero() {
             Power BI, SQL, ETL, and reporting systems for teams that need cleaner data and clearer decisions.
           </p>
 
-          <div className="mx-auto mt-8 flex max-w-xl min-w-0 flex-col justify-center gap-3 sm:flex-row">
+          <div className="mx-auto mt-8 flex max-w-3xl min-w-0 flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Button size="lg" asChild className="w-full sm:w-auto">
               <a href="#projects">
                 View Projects
@@ -26,6 +26,12 @@ export function Hero() {
               <a href="/rizwangpt">
                 <Sparkles className="mr-2 h-4 w-4" />
                 Ask RizwanGPT
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto">
+              <a href="/Rizwan_DA_Resume.pdf" download>
+                <Download className="mr-2 h-4 w-4" />
+                Resume
               </a>
             </Button>
             <Button size="lg" variant="ghost" asChild className="w-full sm:w-auto">
