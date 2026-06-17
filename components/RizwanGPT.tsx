@@ -14,12 +14,12 @@ interface ChatMessage {
 const STORAGE_KEY = "rizwangpt-messages";
 
 const suggestedQuestions = [
-  "What kind of data roles is Rizwan best suited for?",
-  "Summarize Rizwan's strongest projects.",
-  "What is his Power BI experience?",
-  "How strong is his SQL and ETL background?",
-  "Explain the medallion architecture project.",
-  "What should a recruiter know about Rizwan?",
+  "Who is Rizwan's father",
+  "What does Rizwan's father do",
+  "Who is Akbar Khan",
+  "How many years of experience Rizwans father have",
+  "What is the educational background of Akbar Khan",
+  "What is Evacify",
 ];
 
 function isChatSource(source: unknown): source is ChatSource {
